@@ -1,0 +1,201 @@
+.jumpAnimate {
+  animation: jump 1s linear ;
+}
+.smallJumpAnimate {
+  animation: smallJump 1s linear;
+}
+.fellAnimate {
+  animation: wallAnime 0.5s linear;
+}
+.runningRight,
+.runningLeft {
+  background: url(img/marioRunning.gif) no-repeat center;
+}
+.runningLeft {
+  transform: rotateY(180deg);
+}
+.standingRight,
+.standingLeft {
+  background: url(img/stand3.png) no-repeat center;
+}
+.standingLeft {
+  transform: rotateY(180deg);
+}
+
+.sitAnimate {
+  animation: sitdown 200ms ease-in forwards;
+}
+.standAnimate {
+  animation: standup 200ms ease-in forwards;
+}
+.smallAnimate {
+  animation: smalCharacter 300ms ease-in-out forwards;
+}
+.bigAnimate {
+  animation: bigCharacter 300ms ease-in-out forwards;
+}
+@keyframes jump {
+  0% {
+    bottom: 10px;
+  }
+  50% {
+    bottom: 400px;
+  }
+  100% {
+    bottom: 10px;
+  }
+}
+@keyframes smallJump {
+  0% {
+    bottom: 10px;
+  }
+  50% {
+    bottom: 200px;
+  }
+  100% {
+    bottom: 10px;
+  }
+}
+@keyframes wallAnime {
+  0% {
+    bottom: 365px;
+  }
+  100% {
+    bottom: 10px;
+  }
+}
+
+@keyframes sitdown {
+  0% {
+    height: 150px;
+  }
+  100% {
+    height: 120px;
+  }
+}
+@keyframes standup {
+  0% {
+    height: 120px;
+  }
+  100% {
+    height: 150px;
+  }
+}
+@keyframes smalCharacter {
+  0% {
+    width: 100px;
+    height: 150px;
+    opacity: 1;
+  }
+  50% {
+    width: 60px;
+    height: 100px;
+    opacity: 0.5;
+  }
+  100% {
+    width: 80px;
+    height: 120px;
+    opacity: 1;
+  }
+}
+@keyframes bigCharacter {
+  0% {
+    width: 80px;
+    height: 120px;
+    opacity: 1;
+  }
+  50% {
+    width: 120px;
+    height: 170px;
+    opacity: 0.5;
+  }
+  100% {
+    width: 100px;
+    height: 150px;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  @keyframes jump {
+    0% {
+      bottom: 10px;
+    }
+    50% {
+      bottom: 230px;
+    }
+    100% {
+      bottom: 10px;
+    }
+  }
+  @keyframes smallJump {
+    0% {
+      bottom: 10px;
+    }
+    50% {
+      bottom: 120px;
+    }
+    100% {
+      bottom: 10px;
+    }
+  }
+  @keyframes wallAnime {
+    0% {
+      bottom: 205px;
+    }
+    100% {
+      bottom: 10px;
+    }
+  }
+  @keyframes sitdown {
+    0% {
+      height: 80px;
+    }
+    100% {
+      height: 60px;
+    }
+  }
+
+  @keyframes standup {
+    0% {
+      height: 60px;
+    }
+    100% {
+      height: 80px;
+    }
+  }
+  @keyframes smalCharacter {
+    0% {
+      height: 80px;
+      width: 60px;
+      opacity: 1;
+    }
+    50% {
+      height: 50px;
+      width: 30px;
+      opacity: .5;
+    }
+    100% {
+      height: 60px;
+      width: 40px;
+      opacity: 1;
+    }
+  }
+  @keyframes bigCharacter {
+    0% {
+      opacity: 1;
+      height: 60px;
+      width: 40px;
+    }
+    100% {
+      opacity: .5;
+      height: 90px;
+      width: 70px;
+    }
+    100% {
+      opacity: 1;
+      height: 80px;
+      width: 60px;
+    }
+  }
+}

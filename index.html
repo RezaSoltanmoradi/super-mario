@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Mario</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mushroom.css" />
+    <link rel="stylesheet" href="character.css" />
+    <link rel="stylesheet" href="characterEvent.css" />
+    <link rel="stylesheet" href="enemies.css" />
+    <link rel="stylesheet" href="gameOverModal.css" />
+    <link rel="stylesheet" href="smallDeviceBtn.css" />
+
+    <link
+      rel="stylesheet"
+      href="../../fontawesome-free-6.7.2-web/css/fontawesome.min.css"
+    />
+    <link
+      href="../../fontawesome-free-6.7.2-web/css/solid.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../../fontawesome-free-6.7.2-web/css/brands.css"
+    />
+  </head>
+  <body>
+    <div class="overLay" id="overLay"></div>
+    <div class="gameContainer">
+      <div class="game">
+        <div class="obstacles" id="obstacles">
+          <div class="obstacle" id="obstacle1">
+            ?
+            <span class="coin" id="coin1">
+              <i class="fa-brands fa-bitcoin"></i>
+            </span>
+          </div>
+          <div class="obstacle" id="obstacle2">
+            !
+            <span class="coin" id="coin2">
+              <i class="fa-brands fa-bitcoin"></i>
+            </span>
+          </div>
+          <div class="obstacle" id="obstacle3">
+            ?
+            <span class="coin" id="coin3">
+              <i class="fa-brands fa-bitcoin"></i>
+            </span>
+          </div>  
+        </div>
+        <div class="mushroom" id="mushroom"></div>
+        <div id="character"></div>
+        <div id="walkEnemy"></div>
+        <div id="airEnemy"></div>
+      </div>
+      <div class="totalScors">
+        <div class="stageResult">
+          <span class="stageIcon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </span>
+          <span id="StageSpan">مرحله اول</span>
+        </div>
+        <div class="heartResult">
+          <span class="heartIcon">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </span>
+          <span id="heartSpan">1</span>
+        </div>
+        <div class="killResult">
+          <span class="killIcon">
+            <i class="fa-solid fa-skull-crossbones"></i>
+          </span>
+          <span id="killSpan">0 </span>
+        </div>
+        <div class="coinResult">
+          <span id="coinIcon" class="coinIcon">
+            <i class="fa-brands fa-bitcoin"></i>
+          </span>
+          <span id="coinSpan" class="coinSpan"></span>
+        </div>
+      </div>
+      <!-- محل برخورد -->
+      <span class="Accident" id="Accident">
+        <i class="fa-duotone fa-regular fa-skull-crossbones"></i>
+      </span>
+      <div class="buttons">
+        <div class="topBtn">
+          <button id="goTop" class="goTop"></button>
+        </div>
+        <div class="centerBtn">
+          <button id="goLeft"></button>
+          <button id="goRight"></button>
+        </div>
+        <div class="bottomBtn">
+          <button id="sitDown"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
