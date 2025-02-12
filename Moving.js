@@ -1,3 +1,5 @@
+// backgrounSpeed=1;
+let characterSpeed = 0.75; // تنظیم دقیق سرعت حرکت
 const smallDevice = window.innerWidth <= 760;
 function moving() {
   if (gameIsOver) {
@@ -18,11 +20,11 @@ function moving() {
     character.classList.remove("runningLeft");
     character.classList.add("runningRight");
 
-    characterX += speed;
+    characterX += characterSpeed;
     if (smallDevice) {
-      backgroundX += speed;
+      backgroundX += characterSpeed;
     } else {
-      backgroundX -= speed;
+      backgroundX -= characterSpeed;
     }
   } else if (isLeftMoving) {
     lastDirection = "left"; // ذخیره آخرین جهت
@@ -30,11 +32,11 @@ function moving() {
     character.classList.remove("standingLeft");
     character.classList.remove("runningRight");
     character.classList.add("runningLeft");
-    characterX -= speed;
+    characterX -= characterSpeed;
     if (smallDevice) {
-      backgroundX -= speed;
+      backgroundX -= characterSpeed;
     } else {
-      backgroundX += speed;
+      backgroundX += characterSpeed;
     }
   }
 
@@ -56,5 +58,5 @@ function moving() {
   } else if (characterX >= 85) {
     characterX = 85;
   }
-  gameContainer.style.backgroundPositionX = backgroundX + "%";
+  gameContainer.style.backgroundPositionX = backgroundX + "px";
 }

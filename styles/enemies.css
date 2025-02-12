@@ -22,7 +22,7 @@
 }
 @keyframes pipeAnimation {
   0% {
-    left: 100%;
+    left: 120%;
   }
   100% {
     left: -20%;

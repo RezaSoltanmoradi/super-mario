@@ -22,7 +22,6 @@ const mushroom = document.getElementById("mushroom");
 let killCounter = 0;
 let coinCounts = [];
 let characterX = 5; // مقدار اولیه برای موقعیت افقی کاراکتر
-let speed = 1; // سرعت حرکت کاراکتر
 let backgroundX = 0; // مقدار اولیه پس‌زمینه
 let isLeftMoving = false;
 let isRightMoving = false;
