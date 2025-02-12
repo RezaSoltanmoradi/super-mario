@@ -1,0 +1,138 @@
+.modal {
+  position: fixed;
+  padding-top: 20px;
+  width: 600px;
+  height: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 30px;
+  color: red;
+  border-radius: 10px;
+  flex-direction: column;
+  padding-bottom: 50px;
+  justify-content: space-between;
+  align-items: center;
+  display: none;
+  z-index: 300;
+  opacity: 0;
+  background-color: white;
+}
+
+.superMario {
+  background: url("./img/superMario.webp") center no-repeat;
+  background-color: white;
+  background-size: 200px;
+  background-position: 0px;
+}
+.superMarioSuccess {
+  background: url("./img/superMarioSuccess.webp") center no-repeat;
+  background-color: white;
+  background-size: 200px;
+  background-position: 0px;
+}
+.superMarioDeath {
+  background: url("./img/superMarioDeath.png") center no-repeat;
+  background-color: white;
+  background-size: 300px;
+  background-position: 0px;
+}
+
+/* باز شدن مودال */
+.openModal {
+  animation: openModalAnim 0.5s forwards;
+  display: flex !important;
+}
+
+/* بسته شدن مودال */
+.closeModal {
+  animation: closeModalAnim 0.5s forwards;
+}
+.title {
+  font-size: 30px;
+}
+.startbtn {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 200px;
+  height: 50px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  order: 3;
+  display: none;
+}
+.challanges {
+  direction: rtl;
+  order: 2;
+  width: 100%;
+  height: 200px;
+  padding: 10px 50px;
+  list-style: none;
+  color: black;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.challange {
+  text-align: start;
+  font-size: 20;
+  float: right;
+  width: 70%;
+}
+@keyframes openModalAnim {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes closeModalAnim {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+@media screen and (max-width: 760px) {
+  .modal {
+    width: 300px;
+    height: 270px;
+  }
+  .superMario {
+    background-size: 100px;
+  }
+  .superMarioSuccess {
+    background-size: 120px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .challange {
+    font-size: 15px;
+  }
+  .startbtn {
+    font-size: 16px;
+    width: 170px;
+  }
+  .challanges {
+    padding: 10px 20px;
+  }
+}
