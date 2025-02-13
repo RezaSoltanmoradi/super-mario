@@ -18,6 +18,7 @@
   background: url(../img/enemy1.gif) center no-repeat;
   background-size: cover;
   display: none;
+
   /* background-color: white; */
 }
 @keyframes pipeAnimation {

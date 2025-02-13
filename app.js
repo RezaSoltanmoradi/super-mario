@@ -18,24 +18,60 @@ const startSound = new Audio("./audio/starting.mp3");
 const obstacles = document.getElementById("obstacles");
 const obstacle = document.getElementById("obstacle");
 const mushroom = document.getElementById("mushroom");
-
-let killCounter = 0;
-let coinCounts = [];
-let characterX = 5; // مقدار اولیه برای موقعیت افقی کاراکتر
-let backgroundX = 0; // مقدار اولیه پس‌زمینه
+let isSmallCharacter = true;
+let modalIsOpen = false;
+let movment = null;
+let lastDirection = "right"; // جهت پیش‌فرض ایستادن
+let heart = 2;
+let stage = 1;
 let isLeftMoving = false;
 let isRightMoving = false;
 let isJumping = false;
 let isSitting = false;
 let gameIsOver = false;
-let lastDirection = "right"; // جهت پیش‌فرض ایستادن
 let isOnWall = false;
+let deathCounter = { walkDeath: 0, airDeath: 0 };
 let deathPos = { left: "", top: "" };
 let mushIsActive = false;
-let isSmallCharacter = true;
 let mushAnimation = null;
-let chance = 1;
-let stage = 1;
+let characterX = 5;
+let characterSpeed = 0.75;
+let backgroundX = 0;
+let coinCounts = [];
+
+function resetGameData(startBtn) {
+  isSmallCharacter = true;
+  modalIsOpen = false;
+  lastDirection = "right"; // جهت پیش‌فرض ایستادن
+  heart = 2;
+  stage = 1;
+  isLeftMoving = false;
+  isRightMoving = false;
+  isJumping = false;
+  isSitting = false;
+  gameIsOver = false;
+  isOnWall = false;
+  deathCounter = { walkDeath: 0, airDeath: 0 };
+  deathPos = { left: "", top: "" };
+  mushIsActive = false;
+  mushAnimation = null;
+  characterX = 5;
+  characterSpeed = 0.75;
+  backgroundX = 0;
+  coinCounts = [];
+  if (startBtn) {
+    startBtn.style.display = "none";
+  }
+  character.classList.remove("bigAnimate");
+  character.classList.add("smallAnimate");
+  character.classList.add("smCharacter");
+  mushroom.style.display = "none";
+  obstacles.style.display = "none";
+  const obsChildren = obstacles.children;
+  for (i = 0; i < obsChildren.length; i++) {
+    obsChildren[i].classList.remove("emptyObstacle");
+  }
+}
 // **اضافه کردن کنترل‌های کیبورد**
 character.classList.remove("bigAnimate");
 character.classList.add("smallAnimate");
@@ -77,7 +113,6 @@ function stopMovement(event) {
     standUp();
   }
 }
-let movment = setInterval(moving, 30);
 
 function resetMushroom() {
   mushIsActive = false;
@@ -101,7 +136,9 @@ function checkAccident() {
       mushroomAccident.headAccident &&
       !mushIsActive &&
       !isOnWall &&
-      isSmallCharacter
+      isSmallCharacter &&
+      !mushAnimation &&
+      !modalIsOpen
     ) {
       setTimeout(() => {
         mushIsActive = true;
@@ -109,18 +146,17 @@ function checkAccident() {
       const mushMoves = ["mushroomAnimate1", "mushroomAnimate2"];
       const randomMushMovment =
         mushMoves[Math.floor(Math.random() * mushMoves.length)];
-      if (mushAnimation) return;
       mushAnimation = randomMushMovment;
       mushroom.classList.add(mushAnimation);
     } else if (mushroomAccident.isDeath && mushIsActive && isSmallCharacter) {
+      character.classList.remove("smallJumpAnimate");
+      character.classList.remove("smCharacter");
       mushIsActive = false;
       isSmallCharacter = false;
       mushroom.classList.remove(mushAnimation);
-      character.classList.remove("smallJumpAnimate");
-      character.classList.remove("smCharacter");
+      character.style.bottom = characterRect.bottom;
       character.classList.remove("smallAnimate");
       character.classList.add("bigAnimate");
-      chance++;
       mushAnimation = null;
     } else if (
       !mushroomAccident.isDeath &&
@@ -170,11 +206,9 @@ function checkAccident() {
           }
         }
       }
-
       character.classList.remove("jumpAnimate");
       character.style.bottom = `10px`;
     }
-
     if (obstaclesAccident.jumpOnWall && !isOnWall) {
       character.classList.remove("jumpAnimate");
       character.classList.remove("fellAnimate");
@@ -190,44 +224,28 @@ function checkAccident() {
       character.style.bottom = `10px`;
     }
     if (walkEnemyRect.left < -50) {
-      resetSingleEnemy(walkEnemy, true);
+      resetSingleEnemy({ enemy: walkEnemy, isAlive: true });
     } else if (airEnemyRect.left < -50) {
-      resetSingleEnemy(airEnemy, true);
+      resetSingleEnemy({ enemy: airEnemy, isAlive: true });
     } else if (walkAccident.isDeath) {
       endGameHandler(walkAccident);
     } else if (airAccident.isDeath) {
       endGameHandler(airAccident);
     }
+
     function endGameHandler(accident) {
       const { rightDepth, leftDepth, topDepth, bottomDepth, enemy, enemyRec } =
         accident;
       const maxDepth = Math.max(rightDepth, leftDepth, topDepth, bottomDepth);
-
       if (rightDepth === maxDepth) {
         if (!isSmallCharacter) {
-          isSmallCharacter = true;
-          character.classList.remove("bigAnimate");
-          character.classList.add("smallAnimate");
-          chance--;
-          setTimeout(() => {
-            character.classList.add("smCharacter");
-          }, 200);
-          resetSingleEnemy(enemy);
-          return;
+          smallCharacterHandler();
         } else {
           gameIsOverHandler(walkEnemyRect, airEnemyRect, enemy, characterRect);
         }
       } else if (leftDepth === maxDepth) {
         if (!isSmallCharacter) {
-          isSmallCharacter = true;
-          chance--;
-          character.classList.remove("bigAnimate");
-          character.classList.add("smallAnimate");
-          setTimeout(() => {
-            character.classList.add("smCharacter");
-          }, 200);
-          resetSingleEnemy(enemy);
-          return;
+          smallCharacterHandler();
         } else {
           gameIsOverHandler(walkEnemyRect, airEnemyRect, enemy, characterRect);
         }
@@ -236,51 +254,66 @@ function checkAccident() {
           top: `${(enemyRec.top + enemyRec.bottom) / 2}px`,
           left: `${(enemyRec.left + enemyRec.right) / 2}px`,
         };
-        resetSingleEnemy(enemy);
-        killCounter++;
+        if (modalIsOpen) return;
+        if (enemy === walkEnemy) {
+          deathCounter.walkDeath++;
+        } else {
+          deathCounter.airDeath++;
+        }
+        stageHandler();
+        resetSingleEnemy({ enemy });
       } else if (bottomDepth === maxDepth) {
         if (!isSmallCharacter) {
+          smallCharacterHandler();
+        } else {
+          gameIsOverHandler(walkEnemyRect, airEnemyRect, enemy, characterRect);
+        }
+      }
+      function stageHandler() {
+        const stages = {
+          one: deathCounter.walkDeath >= 3 && stage === 1,
+          two: deathCounter.airDeath >= 3 && stage === 2,
+          three:
+            deathCounter.airDeath >= 6 &&
+            deathCounter.walkDeath >= 6 &&
+            stage === 3,
+        };
+        Object.keys(stages).forEach((number) => {
+          if (stages[number]) {
+            stage++;
+            showModal({ stage, gameIsOver });
+          }
+        });
+      }
+      function smallCharacterHandler() {
+        if (!gameIsOver) {
           isSmallCharacter = true;
-          chance--;
           character.classList.remove("bigAnimate");
           character.classList.add("smallAnimate");
           setTimeout(() => {
             character.classList.add("smCharacter");
           }, 200);
-          resetSingleEnemy(enemy);
+          resetSingleEnemy({ enemy });
           return;
-        } else {
-          gameIsOverHandler(walkEnemyRect, airEnemyRect, enemy, characterRect);
         }
       }
     }
-    let allCoins = [];
-    let totalCoins = 0;
-    if (coinCounts.length > 0) {
-      coinCounts.forEach((c) => {
-        allCoins.push(c.coin);
-      });
-      totalCoins = allCoins.reduce((num1, num2) => num1 + num2);
+    function resultHandler() {
+      let allCoins = [];
+      let totalCoins = 0;
+      if (coinCounts.length > 0) {
+        coinCounts.forEach((c) => {
+          allCoins.push(c.coin);
+        });
+        totalCoins = allCoins.reduce((num1, num2) => num1 + num2);
+      }
+      coinSpan.textContent =
+        (totalCoins + deathCounter.airDeath + deathCounter.walkDeath) * 100;
+      killSpan.textContent = deathCounter.airDeath + deathCounter.walkDeath;
+      heartSpan.textContent = heart;
     }
-    coinSpan.textContent = (totalCoins + killCounter) * 100;
-    killSpan.textContent = killCounter;
-    heartSpan.textContent = chance;
-    if (killCounter >= 5 && stage === 1) {
-      stage++;
-      setTimeout(() => {
-        showModal({ stage, gameIsOver });
-      }, 1000);
-    }
-    if (killCounter >= 10 && stage === 2) {
-      stage++;
-      setTimeout(() => {
-        showModal({ stage, gameIsOver });
-      }, 1000);
-    }
+    resultHandler();
   }, 10);
 }
-setTimeout(() => {
-  showModal({ stage, gameIsOver });
-}, 1000);
+showModal({ stage, gameIsOver });
 checkAccident();
-resetEnemies();

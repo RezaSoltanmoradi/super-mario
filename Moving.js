@@ -1,8 +1,7 @@
-// backgrounSpeed=1;
-let characterSpeed = 0.75; // تنظیم دقیق سرعت حرکت
 const smallDevice = window.innerWidth <= 760;
+
 function moving() {
-  if (gameIsOver) {
+  if (gameIsOver && modalIsOpen) {
     character.classList.remove("runningLeft", "runningRight");
     if (lastDirection === "right") {
       character.classList.add("standingRight");
@@ -21,6 +20,7 @@ function moving() {
     character.classList.add("runningRight");
 
     characterX += characterSpeed;
+
     if (smallDevice) {
       backgroundX += characterSpeed;
     } else {
@@ -58,5 +58,5 @@ function moving() {
   } else if (characterX >= 85) {
     characterX = 85;
   }
-  gameContainer.style.backgroundPositionX = backgroundX + "px";
+  gameContainer.style.backgroundPositionX = backgroundX + "%";
 }
