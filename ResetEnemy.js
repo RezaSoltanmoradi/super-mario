@@ -1,5 +1,5 @@
 function resetSingleEnemy({ enemy, isAlive, firstComing }) {
-  if(modalIsOpen) return ;
+  if (modalIsOpen) return;
   // حذف انیمیشن و بازنشانی موقعیت دشمن
   enemy.style.animation = "none";
   // enemy.style.display = "none";
@@ -22,8 +22,13 @@ function resetSingleEnemy({ enemy, isAlive, firstComing }) {
 
   // نمایش نقطه برخورد در صورت مرگ دشمن
   if (!isAlive) {
+    console.log('death',deathPos)
     collisionPoint.style.display = "flex";
     collisionPoint.style.left = deathPos.left;
     collisionPoint.style.top = deathPos.top;
+
+    setTimeout(() => {
+      collisionPoint.style.display = "none";
+    }, 500);
   }
 }

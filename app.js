@@ -279,6 +279,7 @@ function checkAccident() {
       }
       function smallCharacterHandler() {
         if (!gameIsOver) {
+          deathPos = { left: `-1000px`, top: `-1000px` };
           isSmallCharacter = true;
           character.classList.remove("bigAnimate");
           character.classList.add("smallAnimate");
