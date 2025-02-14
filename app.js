@@ -18,6 +18,9 @@ const startSound = new Audio("./audio/starting.mp3");
 const obstacles = document.getElementById("obstacles");
 const obstacle = document.getElementById("obstacle");
 const mushroom = document.getElementById("mushroom");
+const killDetail = document.getElementById("killDetail");
+const birdKillSpan = document.getElementById("birdKillSpan");
+const walkKillSpan = document.getElementById("walkKillSpan");
 let isSmallCharacter = true;
 let modalIsOpen = false;
 let movment = null;
@@ -38,7 +41,8 @@ let characterX = 5;
 let characterSpeed = 0.75;
 let backgroundX = 0;
 let coinCounts = [];
-
+let killCoins = 0;
+let totalCoins = 0;
 function resetGameData(startBtn) {
   isSmallCharacter = true;
   modalIsOpen = false;
@@ -54,10 +58,13 @@ function resetGameData(startBtn) {
   deathCounter = { walkDeath: 0, airDeath: 0 };
   deathPos = { left: "", top: "" };
   mushIsActive = false;
+  mushroom.classList.remove(mushAnimation);
   mushAnimation = null;
   characterX = 5;
   characterSpeed = 0.75;
   backgroundX = 0;
+  totalCoins = 0;
+  killCoins = 0;
   coinCounts = [];
   if (startBtn) {
     startBtn.style.display = "none";
@@ -255,9 +262,10 @@ function checkAccident() {
           left: `${(enemyRec.left + enemyRec.right) / 2}px`,
         };
         if (modalIsOpen) return;
-        if (enemy === walkEnemy) {
+        killCoins += 100;
+        if (enemy === walkEnemy && stage !== 2) {
           deathCounter.walkDeath++;
-        } else {
+        } else if (enemy === airEnemy) {
           deathCounter.airDeath++;
         }
         stageHandler();
@@ -268,22 +276,6 @@ function checkAccident() {
         } else {
           gameIsOverHandler(walkEnemyRect, airEnemyRect, enemy, characterRect);
         }
-      }
-      function stageHandler() {
-        const stages = {
-          one: deathCounter.walkDeath >= 3 && stage === 1,
-          two: deathCounter.airDeath >= 3 && stage === 2,
-          three:
-            deathCounter.airDeath >= 6 &&
-            deathCounter.walkDeath >= 6 &&
-            stage === 3,
-        };
-        Object.keys(stages).forEach((number) => {
-          if (stages[number]) {
-            stage++;
-            showModal({ stage, gameIsOver });
-          }
-        });
       }
       function smallCharacterHandler() {
         if (!gameIsOver) {
@@ -299,21 +291,46 @@ function checkAccident() {
       }
     }
     function resultHandler() {
-      let allCoins = [];
-      let totalCoins = 0;
-      if (coinCounts.length > 0) {
-        coinCounts.forEach((c) => {
-          allCoins.push(c.coin);
-        });
-        totalCoins = allCoins.reduce((num1, num2) => num1 + num2);
+      let calcCoins = coinCounts.map((c) => c.coin); // گرفتن تعداد سکه‌های جمع‌شده
+      let updateCoins =
+        calcCoins.length > 0
+          ? calcCoins.reduce((num1, num2) => num1 + num2) * 100
+          : 0;
+
+      totalCoins = killCoins + updateCoins; // مقدار قبلی را نگه دار و مقدار جدید را اضافه کن
+      coinSpan.textContent = totalCoins;
+      let updateKilling;
+      if (stage === 1) {
+        updateKilling = deathCounter.walkDeath;
+      } else if (stage === 2) {
+        updateKilling = deathCounter.airDeath;
+      } else {
+        updateKilling = deathCounter.airDeath + deathCounter.walkDeath;
       }
-      coinSpan.textContent =
-        (totalCoins + deathCounter.airDeath + deathCounter.walkDeath) * 100;
-      killSpan.textContent = deathCounter.airDeath + deathCounter.walkDeath;
+      killSpan.textContent = updateKilling;
+      birdKillSpan.textContent = deathCounter.airDeath;
+      walkKillSpan.textContent = deathCounter.walkDeath;
       heartSpan.textContent = heart;
     }
+
     resultHandler();
+    function stageHandler() {
+      const stages = {
+        one: deathCounter.walkDeath >= 1 && stage === 1,
+        two: deathCounter.airDeath >= 1 && stage === 2,
+        three:
+          deathCounter.airDeath >= 1 &&
+          deathCounter.walkDeath >= 1 &&
+          stage === 3,
+      };
+      Object.keys(stages).forEach((number) => {
+        if (stages[number]) {
+          stage++;
+          showModal({ gameIsOver });
+        }
+      });
+    }
   }, 10);
 }
-showModal({ stage, gameIsOver });
+showModal({ gameIsOver });
 checkAccident();

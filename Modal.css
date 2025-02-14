@@ -50,7 +50,7 @@
   animation: closeModalAnim 0.5s forwards;
 }
 .title {
-  font-size: 30px;
+  font-size: 23px;
 }
 .startbtn {
   position: absolute;
@@ -61,7 +61,7 @@
   padding: 10px;
   width: 200px;
   height: 50px;
-  font-size: 18px;
+  font-size: 17px;
   background-color: #007bff;
   color: white;
   font-weight: bold;
@@ -86,10 +86,56 @@
   align-items: flex-start;
 }
 .challange {
+  display: flex;
   text-align: start;
-  font-size: 20;
   float: right;
   width: 70%;
+}
+.span1,
+.span2,
+.span0,
+.span3,
+.span4 {
+  background-position: center;
+  width: 20px;
+  height: 20px;
+}
+.span1,
+.span3 {
+  animation: rotateAnim infinite 2s ease;
+}
+.span0,
+.span2,
+.span4 {
+  animation: rotateAnim2 infinite 3s ease-in;
+}
+.span0 {
+  font-size: 20px;
+  background: url("./icons/battleIcon.png");
+  background-size: contain;
+}
+.span1 {
+  font-size: 20px;
+  background: url("./icons/heart.png");
+  background-size: contain;
+}
+.span2 {
+  font-size: 20px;
+  background: url("./icons/coin.png");
+  background-size: contain;
+  color: red;
+}
+.span3 {
+  font-size: 20px;
+  background: url("./icons/walkIcon.png");
+  background-size: contain;
+  color: red;
+}
+.span4 {
+  font-size: 20px;
+  background: url("./icons/info.png");
+  background-size: contain;
+  color: red;
 }
 @keyframes openModalAnim {
   0% {
@@ -111,9 +157,25 @@
     transform: translate(-50%, -50%) scale(0);
   }
 }
+@keyframes rotateAnim {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+@keyframes rotateAnim2 {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
 @media screen and (max-width: 760px) {
   .modal {
-    width: 300px;
+    width: 85%;
     height: 270px;
   }
   .superMario {
@@ -123,7 +185,7 @@
     background-size: 120px;
   }
   .title {
-    font-size: 20px;
+    font-size: 17px;
   }
   .challange {
     font-size: 15px;
