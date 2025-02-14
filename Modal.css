@@ -12,8 +12,6 @@
   border-radius: 10px;
   flex-direction: column;
   padding-bottom: 50px;
-  justify-content: space-between;
-  align-items: center;
   display: none;
   z-index: 300;
   opacity: 0;
@@ -35,8 +33,8 @@
 .superMarioDeath {
   background: url("./img/superMarioDeath.png") center no-repeat;
   background-color: white;
-  background-size: 300px;
-  background-position: 0px;
+  background-size: 250px;
+  background-position: 0px 100px;
 }
 
 /* باز شدن مودال */
@@ -55,6 +53,8 @@
 .startbtn {
   position: absolute;
   bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,9 +87,10 @@
 }
 .challange {
   display: flex;
+  align-items: center;
   text-align: start;
   float: right;
-  width: 70%;
+  width: 90%;
 }
 .span1,
 .span2,
@@ -97,6 +98,7 @@
 .span3,
 .span4 {
   background-position: center;
+  background-repeat: no-repeat;
   width: 20px;
   height: 20px;
 }
@@ -111,31 +113,28 @@
 }
 .span0 {
   font-size: 20px;
-  background: url("./icons/battleIcon.png");
+  background: url("./icons/battleIcon.png") no-repeat;
   background-size: contain;
 }
 .span1 {
   font-size: 20px;
-  background: url("./icons/heart.png");
+  background: url("./icons/heart.png") no-repeat;
   background-size: contain;
 }
 .span2 {
   font-size: 20px;
-  background: url("./icons/coin.png");
+  background: url("./icons/coin.png") no-repeat;
   background-size: contain;
-  color: red;
 }
 .span3 {
   font-size: 20px;
-  background: url("./icons/walkIcon.png");
+  background: url("./icons/walkIcon.png") no-repeat;
   background-size: contain;
-  color: red;
 }
 .span4 {
   font-size: 20px;
-  background: url("./icons/info.png");
+  background: url("./icons/info.png") no-repeat;
   background-size: contain;
-  color: red;
 }
 @keyframes openModalAnim {
   0% {
@@ -176,25 +175,48 @@
 @media screen and (max-width: 760px) {
   .modal {
     width: 85%;
-    height: 270px;
+    height: 370px;
   }
   .superMario {
     background-size: 100px;
+    background-position: 0px 190px;
   }
   .superMarioSuccess {
     background-size: 120px;
+    background-position: 0px 190px;
+  }
+  .superMarioDeath {
+    background-size: 170px;
+    background-position: 0px 190px;
   }
   .title {
     font-size: 17px;
   }
-  .challange {
-    font-size: 15px;
+  .challanges {
+    position: absolute;
+    top: 60px;
   }
   .startbtn {
     font-size: 16px;
-    width: 170px;
+    width: 190px;
+    bottom: 0;
   }
   .challanges {
     padding: 10px 20px;
+  }
+  .span1,
+  .span2,
+  .span0 {
+    background-position: center;
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+  }
+  .span3,
+  .span4 {
+    font-size: 30px;
+  }
+  .text {
+    font-size: 14px;
   }
 }

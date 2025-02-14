@@ -62,8 +62,7 @@ function showModal() {
       txtSpan.classList.add("text");
       iconSpan.classList.add(`span${challIndex}`);
       if (stage === 2 && iconSpan.classList.contains("span3")) {
-        iconSpan.style.backgroundImage = 'url("./icons/airIcon.png")';
-        console.log("stage 2");
+        iconSpan.style.backgroundImage = 'url("./icons/airIcon.png") no-repeat';
       }
 
       li.classList.add("challange");
@@ -82,7 +81,7 @@ function showModal() {
       title.textContent = `.هنوز ${heart} فرصت برای مرحله ${convertToTxt[stage]} باقی هست  🎯`;
     } else {
       startBtn.textContent = " شروع بازی جدید 🎮";
-      title.textContent = " .شما باختید☠️";
+      title.textContent = " .شما باختید 👾";
     }
     modalContainer.classList.remove("superMario");
     modalContainer.classList.remove("superMarioSuccess");

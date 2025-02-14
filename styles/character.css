@@ -4,17 +4,15 @@
   bottom: 10px;
   background-size: cover;
   position: absolute;
-  background-color: red;
   display: none;
 }
 #character {
-    width: 100px;
-    height: 150px;
+  width: 100px;
+  height: 150px;
 }
 .smCharacter {
   width: 80px !important;
   height: 120px !important;
-
 }
 @media screen and (max-width: 760px) {
   #character {
