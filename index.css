@@ -75,7 +75,7 @@ p {
   width: 250px;
   height: 70px;
   bottom: 300px;
-  left: 80px;
+  left: 120px;
   display: flex;
   z-index: 220;
   display: none;
@@ -271,7 +271,7 @@ span {
     opacity: 0;
   }
   to {
-    left: 80px;
+    left: 120px;
     opacity: 1;
   }
 }
@@ -302,7 +302,7 @@ span {
     width: 120px;
     height: 40px;
     bottom: 170px;
-    left: 50px;
+    left: 60px;
   }
   @keyframes obstaclesAnim {
     from {
@@ -310,7 +310,7 @@ span {
       opacity: 0;
     }
     to {
-      left: 50px;
+      left: 60px;
       opacity: 1;
     }
   }

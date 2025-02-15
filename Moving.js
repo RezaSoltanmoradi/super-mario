@@ -50,13 +50,13 @@ function moving() {
     }
   }
 
-  if (characterX > -2 && characterX < 90) {
+  if (characterX > 0 && characterX < 95) {
     character.style.left = characterX + "%";
   }
-  if (characterX <= -2) {
-    characterX = -2;
-  } else if (characterX >= 85) {
-    characterX = 85;
+  if (characterX <= 0) {
+    characterX = 0;
+  } else if (characterX >= 95) {
+    characterX = 95;
   }
-  gameContainer.style.backgroundPositionX = backgroundX + "%";
+  // gameContainer.style.backgroundPositionX = backgroundX + "%";
 }

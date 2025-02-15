@@ -1,16 +1,15 @@
 .mushroom {
   position: absolute;
   background: url("../img/Mushroom.png") center no-repeat;
-  /* background-color: red; */
   background-size: cover;
   width: 71px;
   height: 70px;
   bottom: 300px;
-  left: 170px;
+  left: 210px;
   z-index: 200;
   opacity: 0;
   transition: all 1s linear;
-  display: none ;
+  display: none;
 }
 .mushroomAnimate1 {
   display: flex !important;
@@ -24,23 +23,23 @@
 @keyframes mushAnime1 {
   0% {
     opacity: 0;
-    left: 171px;
+    left: 210px;
     bottom: 300px;
   }
   25% {
     opacity: 1;
-    left: 171px;
+    left: 210px;
     bottom: 370px;
   }
   50% {
     opacity: 1;
-    left: 10px;
+    left: 50px;
     bottom: 370px;
   }
   75% {
     opacity: 1;
     bottom: 10px;
-    left: 10px;
+    left: 50px;
   }
   100% {
     opacity: 1;
@@ -51,23 +50,23 @@
 @keyframes mushAnime2 {
   0% {
     opacity: 0;
-    left: 171px;
+    left: 210px;
     bottom: 300px;
   }
   25% {
     opacity: 1;
-    left: 171px;
+    left: 210px;
     bottom: 370px;
   }
   50% {
     opacity: 1;
-    left: 330px;
+    left: 370px;
     bottom: 370px;
   }
   75% {
     opacity: 1;
     bottom: 10px;
-    left: 330px;
+    left: 370px;
   }
   100% {
     opacity: 1;
@@ -80,28 +79,28 @@
     width: 40px;
     height: 40px;
     bottom: 170px;
-    left: 90px;
+    left: 100px;
   }
   @keyframes mushAnime1 {
     0% {
       opacity: 0;
-      left: 90px;
+      left: 100px;
       bottom: 170px;
     }
     25% {
       opacity: 1;
-      left: 90px;
+      left: 100px;
       bottom: 210px;
     }
     50% {
       opacity: 1;
-      left: 10px;
+      left: 20px;
       bottom: 210px;
     }
     75% {
       opacity: 1;
       bottom: 10px;
-      left: 10px;
+      left: 20px;
     }
     100% {
       opacity: 1;
@@ -112,23 +111,23 @@
   @keyframes mushAnime2 {
     0% {
       opacity: 0;
-      left: 90px;
+      left: 100px;
       bottom: 170px;
     }
     25% {
       opacity: 1;
-      left: 90px;
+      left: 100px;
       bottom: 210px;
     }
     50% {
       opacity: 1;
-      left: 170px;
+      left: 180px;
       bottom: 210px;
     }
     75% {
       opacity: 1;
+      left: 180px;
       bottom: 10px;
-      left: 170px;
     }
     100% {
       opacity: 1;
