@@ -47,6 +47,7 @@ function resetGameData(startBtn) {
   isSmallCharacter = true;
   modalIsOpen = false;
   lastDirection = "right"; // جهت پیش‌فرض ایستادن
+  character.style.bottom = "10px";
   heart = 2;
   stage = 1;
   isLeftMoving = false;
@@ -318,7 +319,7 @@ function checkAccident() {
     function stageHandler() {
       const stages = {
         one: deathCounter.walkDeath >= 3 && stage === 1,
-        two: deathCounter.airDeath >= 3 && stage === 2,
+        two: deathCounter.airDeath >= 10 && stage === 2,
         three:
           deathCounter.airDeath >= 3 &&
           deathCounter.walkDeath >= 3 &&

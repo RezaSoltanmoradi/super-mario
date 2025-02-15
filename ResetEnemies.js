@@ -1,6 +1,7 @@
 // **تاخیر تصادفی برای بلوک‌ها (برای متعادل‌سازی بازی)**
 function resetEnemies() {
-  if(modalIsOpen) return ;
+  if (modalIsOpen) return;
+  console.log("reset enemies ...");
   walkEnemy.style.animation = "none";
   airEnemy.style.animation = "none";
   walkEnemy.style.left = "120%"; // بازگرداندن دشمن به موقعیت اولیه
