@@ -20,7 +20,7 @@ function resetSingleEnemy({ enemy, isAlive, firstComing }) {
   } else if (!firstComing && !modalIsOpen) {
     let delay = Math.random() * 3 + 1; // تاخیر تصادفی بین 1 تا 4 ثانیه
     if (timeSinceLastDeath < previousDelay + 1) {
-      delay += 1.5; // اگر دو دشمن نزدیک هم بودند، ۱.۵ ثانیه اضافه کن
+      delay += 2; // اگر دو دشمن نزدیک هم بودند، 2 ثانیه اضافه کن
     }
     previousDelay = delay;
     previousDeathTime = currentTime; // ذخیره آخرین زمان مرگ
