@@ -7,6 +7,7 @@ const killSpan = document.getElementById("killSpan");
 const heartSpan = document.getElementById("heartSpan");
 const StageSpan = document.getElementById("StageSpan");
 const coinSpan = document.getElementById("coinSpan");
+
 const collisionPoint = document.getElementById("Accident");
 const topBtn = document.getElementById("goTop");
 const rightBtn = document.getElementById("goRight");
