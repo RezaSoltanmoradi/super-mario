@@ -1,10 +1,11 @@
 #character,
 .smCharacter {
   left: 50px;
-  bottom: 10px;
+  bottom: 30px;
   background-size: cover;
   position: absolute;
   display: none;
+  /* background-color: red; */
 }
 #character {
   width: 100px;

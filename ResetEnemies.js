@@ -12,8 +12,8 @@ function resetEnemies() {
     deathSound.pause();
     startSound.play();
   }, 3000);
-  walkEnemy.style.animation = `pipeAnimation 7s infinite linear`;
-  airEnemy.style.animation = `pipeAnimation 7s infinite linear`;
-  walkEnemy.style.animationDelay = `5s`;
-  airEnemy.style.animationDelay = `2s`;
+  walkEnemy.style.animation = `pipeAnimation ${enemySpeed}s infinite linear`;
+  airEnemy.style.animation = `pipeAnimation ${enemySpeed}s infinite linear`;
+  walkEnemy.style.animationDelay = `10s`;
+  airEnemy.style.animationDelay = `1s`;
 }

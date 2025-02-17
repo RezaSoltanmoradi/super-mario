@@ -4,7 +4,7 @@ let delayCounter = 0;
 
 function resetSingleEnemy({ enemy, isAlive, firstComing }) {
   if (modalIsOpen) return;
-
+  console.log("enemy speed", enemySpeed);
   enemy.style.animation = "none";
   enemy.style.left = "120%"; // بازگرداندن دشمن به موقعیت اولیه
   enemy.offsetHeight; // ترفند برای بازنشانی تغییرات CSS
@@ -14,7 +14,7 @@ function resetSingleEnemy({ enemy, isAlive, firstComing }) {
 
   if (firstComing) {
     setTimeout(() => {
-      enemy.style.animation = `pipeAnimation 7s linear forwards`;
+      enemy.style.animation = `pipeAnimation ${enemySpeed}s infinite linear`;
       firstComing = false;
     }, 50);
   } else if (!firstComing && !modalIsOpen) {
@@ -26,7 +26,7 @@ function resetSingleEnemy({ enemy, isAlive, firstComing }) {
     previousDeathTime = currentTime; // ذخیره آخرین زمان مرگ
 
     setTimeout(() => {
-      enemy.style.animation = `pipeAnimation 7s linear forwards`;
+      enemy.style.animation = `pipeAnimation ${enemySpeed}s infinite linear`;
     }, delay * 1000);
   }
 

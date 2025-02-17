@@ -1,5 +1,6 @@
 // گرفتن المان‌های صفحه
-const gameContainer = document.querySelector(".game");
+const gameContainer = document.querySelector(".gameContainer");
+const gameImage = document.querySelector(".game");
 const character = document.getElementById("character");
 const walkEnemy = document.getElementById("walkEnemy");
 const airEnemy = document.getElementById("airEnemy");
@@ -21,6 +22,8 @@ const mushroom = document.getElementById("mushroom");
 const killDetail = document.getElementById("killDetail");
 const birdKillSpan = document.getElementById("birdKillSpan");
 const walkKillSpan = document.getElementById("walkKillSpan");
+let deviceWidth = window.innerWidth; // عرض دستگاه
+
 let isSmallCharacter = true;
 let modalIsOpen = false;
 let movment = null;
@@ -37,17 +40,19 @@ let deathCounter = { walkDeath: 0, airDeath: 0 };
 let deathPos = { left: "", top: "" };
 let mushIsActive = false;
 let mushAnimation = null;
-let characterX = 5;
-let characterSpeed = 0.75;
-let backgroundX = 0;
+let characterX = 50;
+let characterSpeed = deviceWidth <= 760 ? 2 : 5;
+let enemySpeed = deviceWidth <= 760 ? 40 : 20;
+let scrollPosition = 0;
 let coinCounts = [];
 let killCoins = 0;
 let totalCoins = 0;
+
 function resetGameData(startBtn) {
   isSmallCharacter = true;
   modalIsOpen = false;
   lastDirection = "right"; // جهت پیش‌فرض ایستادن
-  character.style.bottom = "10px";
+  character.style.bottom = "30px";
   heart = 2;
   stage = 1;
   isLeftMoving = false;
@@ -61,9 +66,9 @@ function resetGameData(startBtn) {
   mushIsActive = false;
   mushroom.classList.remove(mushAnimation);
   mushAnimation = null;
-  characterX = 5;
-  characterSpeed = 0.75;
-  backgroundX = 0;
+  characterX = 50;
+  characterSpeed = deviceWidth <= 760 ? 2 : 5;
+  scrollPosition = 0;
   totalCoins = 0;
   killCoins = 0;
   coinCounts = [];
@@ -170,7 +175,7 @@ function checkAccident() {
       !mushroomAccident.isDeath &&
       mushIsActive &&
       isSmallCharacter &&
-      (mushroomRect.right < 0 || mushroomRect.left > gameContainer.clientWidth)
+      (mushroomRect.right < 0 || mushroomRect.left > gameImage.clientWidth)
     ) {
       resetMushroom();
     }
@@ -215,21 +220,21 @@ function checkAccident() {
         }
       }
       character.classList.remove("jumpAnimate");
-      character.style.bottom = `10px`;
+      character.style.bottom = `30px`;
     }
     if (obstaclesAccident.jumpOnWall && !isOnWall) {
       character.classList.remove("jumpAnimate");
       character.classList.remove("fellAnimate");
       character.style.left = `${characterRect.left}px`;
       character.style.bottom = `${
-        gameContainer.clientHeight - obstaclesRect.top - 5
+        gameImage.clientHeight - obstaclesRect.top - 5
       }px`;
       isOnWall = true;
     }
     if (!obstaclesAccident.jumpOnWall && isOnWall) {
       isOnWall = false;
       character.classList.add("fellAnimate");
-      character.style.bottom = `10px`;
+      character.style.bottom = `30px`;
     }
     if (walkEnemyRect.left < -50) {
       resetSingleEnemy({ enemy: walkEnemy, isAlive: true });
@@ -318,7 +323,7 @@ function checkAccident() {
     resultHandler();
     function stageHandler() {
       const stages = {
-        one: deathCounter.walkDeath >= 3 && stage === 1,
+        one: deathCounter.walkDeath >= 1 && stage === 1,
         two: deathCounter.airDeath >= 10 && stage === 2,
         three:
           deathCounter.airDeath >= 3 &&

@@ -2,7 +2,7 @@
   width: 150px;
   height: 130px;
   left: 120%;
-  bottom: 120px;
+  bottom: 150px;
   position: absolute;
   background: url(../img/enemy2.gif) center no-repeat;
   /* background-color: green; */
@@ -13,7 +13,7 @@
   width: 100px;
   height: 150px;
   left: 120%;
-  bottom: 10px;
+  bottom: 20px;
   position: absolute;
   background: url(../img/enemy1.gif) center no-repeat;
   background-size: cover;
@@ -37,6 +37,6 @@
   #airEnemy {
     width: 80px;
     height: 70px;
-    bottom: 70px;
+    bottom: 90px;
   }
 }

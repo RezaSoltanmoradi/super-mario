@@ -36,24 +36,24 @@
 }
 @keyframes jump {
   0% {
-    bottom: 10px;
+    bottom: 30px;
   }
   50% {
     bottom: 370px;
   }
   100% {
-    bottom: 10px;
+    bottom: 30px;
   }
 }
 @keyframes smallJump {
   0% {
-    bottom: 10px;
+    bottom: 30px;
   }
   50% {
     bottom: 200px;
   }
   100% {
-    bottom: 10px;
+    bottom: 30px;
   }
 }
 @keyframes wallAnime {
@@ -61,7 +61,7 @@
     bottom: 365px;
   }
   100% {
-    bottom: 10px;
+    bottom: 30px;
   }
 }
 
@@ -119,24 +119,24 @@
 @media screen and (max-width: 760px) {
   @keyframes jump {
     0% {
-      bottom: 10px;
+      bottom: 30px;
     }
     50% {
       bottom: 230px;
     }
     100% {
-      bottom: 10px;
+      bottom: 30px;
     }
   }
   @keyframes smallJump {
     0% {
-      bottom: 10px;
+      bottom: 30px;
     }
     50% {
       bottom: 120px;
     }
     100% {
-      bottom: 10px;
+      bottom: 30px;
     }
   }
   @keyframes wallAnime {
@@ -144,7 +144,7 @@
       bottom: 205px;
     }
     100% {
-      bottom: 10px;
+      bottom: 30px;
     }
   }
   @keyframes sitdown {

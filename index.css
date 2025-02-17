@@ -1,11 +1,37 @@
 .gameContainer {
-  width: 100%;
+  width: 100vw; /* یا مقدار ثابت مثل 500px */
   height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow-x: scroll; /* اطمینان از فعال بودن اسکرول */
+  scroll-behavior: smooth;
   background-color: black;
+  white-space: nowrap;
 }
 
+.game {
+  display: inline-block;
+  width: calc(90vh * 4.08); /* مقدار زیادتر از عرض صفحه */
+  height: 90vh;
+  background: url("img/gamePlay.jpg") no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  background-position: left top;
+  position: relative;
+  z-index: 200;
+}
+
+.moveGameArea {
+  /* animation: moveGameAreaAnim 10s linear infinite; */
+}
+.gameContainer::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.gameContainer::-webkit-scrollbar-thumb {
+  background-color: #888; /* رنگ اسکرول */
+  border-radius: 4px;
+}
 * {
   padding: 0%;
   margin: 0%;
@@ -24,21 +50,6 @@
   .game {
     opacity: 0.4;
   }
-}
-.game {
-  width: 100%;
-  height: 90vh;
-  overflow: hidden; /* برای جلوگیری از اسکرول */
-  background: url("img/background2.jpg");
-  background-size: cover;
-  background-repeat: repeat-x; /* تصویر تکرار بشه */
-  position: relative;
-  transition: left 0.2s linear; /* حرکت نرم‌تر هنگام تغییر left */
-  z-index: 200;
-  display: inline-block;
-}
-.moveGameArea {
-  animation: moveGameAreaAnim 10s linear infinite;
 }
 
 .Accident {
@@ -72,7 +83,7 @@ p {
 
 .obstacles {
   position: absolute;
-  width: 250px;
+  width: 280px;
   height: 70px;
   bottom: 300px;
   left: 120px;
@@ -89,7 +100,7 @@ p {
   border: 2px solid black;
   margin: 2px;
   height: 100%;
-  width: 85px;
+  width: 93px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,7 +150,7 @@ p {
   animation: coinJumpAnim 0.6s ease-out forwards;
 }
 .totalScors {
-  position: absolute;
+  position: fixed;
   direction: rtl;
   z-index: 250;
   display: flex;
@@ -280,29 +291,30 @@ span {
     background-position: 0 0;
   }
   to {
-    background-position: 100vw 0;
-  }
-}
-@media screen and (min-width: 760px) {
-  .game {
-    background-size: contain;
+    background-position: 100% 0;
   }
 }
 @media screen and (max-width: 760px) {
   .game {
+    width: calc(60vh * 4.08);
     height: 60vh;
+  }
+  .gameContainer {
+    overflow-x: scroll !important; /* اطمینان از فعال بودن اسکرول */
   }
   .Accident {
     font-size: 30px;
     width: 30px;
     height: 30px;
   }
-
   .obstacles {
-    width: 120px;
+    width: 150px;
     height: 40px;
     bottom: 170px;
     left: 60px;
+  }
+  .obstacle {
+    width: 50px;
   }
   @keyframes obstaclesAnim {
     from {
