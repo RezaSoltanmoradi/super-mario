@@ -8,8 +8,6 @@ const killSpan = document.getElementById("killSpan");
 const heartSpan = document.getElementById("heartSpan");
 const StageSpan = document.getElementById("StageSpan");
 const coinSpan = document.getElementById("coinSpan");
-
-const collisionPoint = document.getElementById("Accident");
 const topBtn = document.getElementById("goTop");
 const rightBtn = document.getElementById("goRight");
 const leftBtn = document.getElementById("goLeft");
@@ -24,7 +22,6 @@ const killDetail = document.getElementById("killDetail");
 const birdKillSpan = document.getElementById("birdKillSpan");
 const walkKillSpan = document.getElementById("walkKillSpan");
 let deviceWidth = window.innerWidth; // عرض دستگاه
-
 let isSmallCharacter = true;
 let modalIsOpen = false;
 let movment = null;
@@ -38,7 +35,6 @@ let isSitting = false;
 let gameIsOver = false;
 let isOnWall = false;
 let deathCounter = { walkDeath: 0, airDeath: 0 };
-let deathPos = { left: "", top: "" };
 let mushIsActive = false;
 let mushAnimation = null;
 let characterX = 50;
@@ -63,7 +59,6 @@ function resetGameData(startBtn) {
   gameIsOver = false;
   isOnWall = false;
   deathCounter = { walkDeath: 0, airDeath: 0 };
-  deathPos = { left: "", top: "" };
   mushIsActive = false;
   mushroom.classList.remove(mushAnimation);
   mushAnimation = null;
@@ -238,9 +233,9 @@ function checkAccident() {
       character.style.bottom = `30px`;
     }
     if (walkEnemyRect.left < -50) {
-      resetSingleEnemy({ enemy: walkEnemy, isAlive: true });
+      resetSingleEnemy({ enemy: walkEnemy });
     } else if (airEnemyRect.left < -50) {
-      resetSingleEnemy({ enemy: airEnemy, isAlive: true });
+      resetSingleEnemy({ enemy: airEnemy });
     } else if (walkAccident.isDeath) {
       endGameHandler(walkAccident);
     } else if (airAccident.isDeath) {
@@ -264,10 +259,6 @@ function checkAccident() {
           gameIsOverHandler(walkEnemyRect, airEnemyRect, enemy, characterRect);
         }
       } else if (topDepth === maxDepth) {
-        deathPos = {
-          top: `${(enemyRec.top + enemyRec.bottom) / 2}px`,
-          left: `${(enemyRec.left + enemyRec.right) / 2}px`,
-        };
         if (modalIsOpen) return;
         killCoins += 100;
         if (enemy === walkEnemy && stage !== 2) {
@@ -286,7 +277,6 @@ function checkAccident() {
       }
       function smallCharacterHandler() {
         if (!gameIsOver) {
-          deathPos = { left: `-1000px`, top: `-1000px` };
           isSmallCharacter = true;
           character.classList.remove("bigAnimate");
           character.classList.add("smallAnimate");

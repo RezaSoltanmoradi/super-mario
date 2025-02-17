@@ -115,7 +115,6 @@ const closeModal = ({ startBtn, modalContainer }) => {
   gameIsOver = false;
   modalContainer.classList.remove("openModal");
   modalContainer.classList.add("closeModal");
-  collisionPoint.style.display = "none";
   character.style.display = "flex";
   character.offsetHeight;
   setTimeout(() => {
@@ -130,11 +129,9 @@ const closeModal = ({ startBtn, modalContainer }) => {
   movment = setInterval(moving, 30);
 
   if (stage === 1 || heart === 0) {
-    console.log("1");
 
     handleFirstStage();
   } else if (stage <= 3) {
-    console.log("2");
     handleSecondStage();
   } else if (stage === 4) {
     resetGameData(startBtn);

@@ -51,19 +51,6 @@
     opacity: 0.4;
   }
 }
-
-.Accident {
-  position: absolute;
-  background: url("./img/bang2.png") no-repeat;
-  background-position: center;
-  background-size: contain;
-  font-size: 50px;
-  width: 50px;
-  height: 50px;
-  z-index: 250;
-  display: none;
-  animation: bombAnimation 0.5s ease;
-}
 .results {
   margin: -5px;
   padding: 0;
@@ -219,21 +206,7 @@ span {
 .stageResult {
   color: blue;
 }
-@keyframes bombAnimation {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  80% {
-    opacity: 1;
-    transform: rotateY(1);
-  }
-  100% {
-    opacity: 0;
 
-    transform: rotateY(1);
-  }
-}
 @keyframes rotateAnim {
   0% {
     transform: rotateY(0deg);
@@ -302,11 +275,7 @@ span {
   .gameContainer {
     overflow-x: scroll !important; /* اطمینان از فعال بودن اسکرول */
   }
-  .Accident {
-    font-size: 30px;
-    width: 30px;
-    height: 30px;
-  }
+  
   .obstacles {
     width: 150px;
     height: 40px;

@@ -2,9 +2,8 @@ let previousDelay = 0;
 let previousDeathTime = 0;
 let delayCounter = 0;
 
-function resetSingleEnemy({ enemy, isAlive, firstComing }) {
+function resetSingleEnemy({ enemy, firstComing }) {
   if (modalIsOpen) return;
-  console.log("enemy speed", enemySpeed);
   enemy.style.animation = "none";
   enemy.style.left = "120%"; // بازگرداندن دشمن به موقعیت اولیه
   enemy.offsetHeight; // ترفند برای بازنشانی تغییرات CSS
@@ -28,15 +27,5 @@ function resetSingleEnemy({ enemy, isAlive, firstComing }) {
     setTimeout(() => {
       enemy.style.animation = `pipeAnimation ${enemySpeed}s infinite linear`;
     }, delay * 1000);
-  }
-
-  if (!isAlive) {
-    collisionPoint.style.display = "flex";
-    collisionPoint.style.left = deathPos.left;
-    collisionPoint.style.top = deathPos.top;
-
-    setTimeout(() => {
-      collisionPoint.style.display = "none";
-    }, 500);
   }
 }
