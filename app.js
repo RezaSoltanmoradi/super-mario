@@ -324,8 +324,8 @@ function checkAccident() {
     resultHandler();
     function stageHandler() {
       const stages = {
-        one: deathCounter.walkDeath >= 1 && stage === 1,
-        two: deathCounter.airDeath >= 2 && stage === 2,
+        one: deathCounter.walkDeath >= 3 && stage === 1,
+        two: deathCounter.airDeath >= 3 && stage === 2,
         three:
           deathCounter.airDeath >= 3 &&
           deathCounter.walkDeath >= 3 &&
