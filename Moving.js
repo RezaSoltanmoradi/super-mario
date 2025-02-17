@@ -16,37 +16,27 @@ function moving() {
   imageWidth = gameImage.getBoundingClientRect().width;
   const maxCharacterX = imageWidth - characterRect.width; // حد نهایی حرکت کاراکتر
 
-  if (isRightMoving) {
+  if (isRightMoving && characterX + characterRect.width < imageWidth) {
     lastDirection = "right"; // ذخیره آخرین جهت
     character.classList.remove("standingRight");
     character.classList.remove("standingLeft");
     character.classList.remove("runningLeft");
     character.classList.add("runningRight");
 
-    if (characterX + characterRect.width <= imageWidth) {
-      characterX = Math.min(characterX + characterSpeed, maxCharacterX);
-    } 
-    if (deviceWidth <= 760) {
-      // برای دستگاه‌های کوچک، اسکرول رو به راست می‌بریم
-      scrollPosition += characterSpeed;
-    } else {
-      // برای دستگاه‌های بزرگتر، اسکرول رو به چپ می‌بریم
-      scrollPosition -= characterSpeed;
-    }
-  } else if (isLeftMoving) {
+    characterX = Math.min(characterX + characterSpeed, maxCharacterX);
+  } else if (isLeftMoving && characterX > 0) {
     lastDirection = "left"; // ذخیره آخرین جهت
     character.classList.remove("standingRight");
     character.classList.remove("standingLeft");
     character.classList.remove("runningRight");
     character.classList.add("runningLeft");
-
     characterX = Math.max(characterX - characterSpeed, 0);
-
-    if (deviceWidth <= 760) {
-      scrollPosition -= characterSpeed;
-    } else {
-      scrollPosition += characterSpeed;
-    }
+  } else if (
+    characterX + characterRect.width === imageWidth ||
+    characterX === 0
+  ) {
+    isRightMoving = false;
+    isLeftMoving = false;
   }
 
   // **بررسی ایستادن**

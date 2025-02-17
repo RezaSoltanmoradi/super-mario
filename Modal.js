@@ -130,8 +130,11 @@ const closeModal = ({ startBtn, modalContainer }) => {
   movment = setInterval(moving, 30);
 
   if (stage === 1 || heart === 0) {
+    console.log("1");
+
     handleFirstStage();
   } else if (stage <= 3) {
+    console.log("2");
     handleSecondStage();
   } else if (stage === 4) {
     resetGameData(startBtn);
@@ -162,6 +165,10 @@ function handleSecondStage() {
   obstacles.style.display = "flex";
   mushroom.style.display = "flex";
   walkEnemy.style.display = "flex";
+  character.style.left = "50px";
+  characterX = 50;
+
+  character.offsetHeight;
   battleIcon.style.backgroundImage = 'url("./icons/airIcon.png")';
 
   if (stage === 3) {
