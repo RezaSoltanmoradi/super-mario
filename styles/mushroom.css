@@ -3,32 +3,32 @@
   background: url("../img/Mushroom.png") center no-repeat;
   background-size: cover;
   width: 71px;
-  height: 70px;
+  height: 68px;
   bottom: 300px;
-  left: 210px;
+  left: 225px;
   z-index: 200;
   opacity: 0;
-  transition: all 1s linear;
+  transition: all 1s ease-out;
   display: none;
 }
 .mushroomAnimate1 {
   display: flex !important;
-  animation: mushAnime1 10s ease-in forwards;
+  animation: mushAnime1 15s ease-in-out forwards;
 }
 .mushroomAnimate2 {
   display: flex !important;
-  animation: mushAnime2 10s ease-in forwards;
+  animation: mushAnime2 15s ease-in-out forwards;
 }
 
 @keyframes mushAnime1 {
   0% {
     opacity: 0;
-    left: 210px;
+    left: 225px;
     bottom: 300px;
   }
   25% {
     opacity: 1;
-    left: 210px;
+    left: 225px;
     bottom: 370px;
   }
   50% {
@@ -38,40 +38,40 @@
   }
   75% {
     opacity: 1;
-    bottom: 10px;
+    bottom: 30px;
     left: 50px;
   }
   100% {
     opacity: 1;
     left: -20%;
-    bottom: 10px;
+    bottom: 30px;
   }
 }
 @keyframes mushAnime2 {
   0% {
     opacity: 0;
-    left: 210px;
+    left: 225px;
     bottom: 300px;
   }
   25% {
     opacity: 1;
-    left: 210px;
+    left: 225px;
     bottom: 370px;
   }
   50% {
     opacity: 1;
-    left: 370px;
+    left: 397px;
     bottom: 370px;
   }
   75% {
     opacity: 1;
-    bottom: 10px;
-    left: 370px;
+    bottom: 30px;
+    left: 397px;
   }
   100% {
     opacity: 1;
     left: 120%;
-    bottom: 10px;
+    bottom: 30px;
   }
 }
 @media screen and (max-width: 760px) {
@@ -79,60 +79,60 @@
     width: 40px;
     height: 40px;
     bottom: 170px;
-    left: 100px;
+    left: 114px;
   }
   @keyframes mushAnime1 {
     0% {
       opacity: 0;
-      left: 100px;
+      left: 114px;
       bottom: 170px;
     }
     25% {
       opacity: 1;
-      left: 100px;
-      bottom: 210px;
+      left: 114px;
+      bottom: 208px;
     }
     50% {
       opacity: 1;
-      left: 20px;
-      bottom: 210px;
+      left: 22px;
+      bottom: 208px;
     }
     75% {
       opacity: 1;
-      bottom: 10px;
-      left: 20px;
+      bottom: 30px;
+      left: 22px;
     }
     100% {
       opacity: 1;
       left: -20%;
-      bottom: 10px;
+      bottom: 30px;
     }
   }
   @keyframes mushAnime2 {
     0% {
       opacity: 0;
-      left: 100px;
+      left: 114px;
       bottom: 170px;
     }
     25% {
       opacity: 1;
-      left: 100px;
-      bottom: 210px;
+      left: 114px;
+      bottom: 208px;
     }
     50% {
       opacity: 1;
-      left: 180px;
-      bottom: 210px;
+      left: 208px;
+      bottom: 208px;
     }
     75% {
       opacity: 1;
-      left: 180px;
-      bottom: 10px;
+      left: 208px;
+      bottom: 30px;
     }
     100% {
       opacity: 1;
       left: 120%;
-      bottom: 10px;
+      bottom: 30px;
     }
   }
 }
