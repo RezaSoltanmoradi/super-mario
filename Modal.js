@@ -19,7 +19,6 @@ function showModal() {
   modalContainer.style.display = "flex";
   setTimeout(() => {
     modalContainer.classList.add("openModal");
-    gameImage.classList.add("moveGameArea");
   }, 10);
   title.classList.add("title");
   startBtn.classList.add("startbtn");
@@ -110,7 +109,6 @@ function showModal() {
 }
 const closeModal = ({ startBtn, modalContainer }) => {
   deathCounter = { walkDeath: 0, airDeath: 0 };
-  gameImage.classList.remove("moveGameArea");
   modalIsOpen = false;
   gameIsOver = false;
   modalContainer.classList.remove("openModal");
@@ -129,8 +127,7 @@ const closeModal = ({ startBtn, modalContainer }) => {
   movment = setInterval(moving, 30);
 
   if (stage === 1 || heart === 0) {
-    // handleFirstStage();
-    handleSecondStage()
+    handleFirstStage();
   } else if (stage <= 3) {
     handleSecondStage();
   } else if (stage === 4) {
