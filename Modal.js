@@ -129,8 +129,8 @@ const closeModal = ({ startBtn, modalContainer }) => {
   movment = setInterval(moving, 30);
 
   if (stage === 1 || heart === 0) {
-
-    handleFirstStage();
+    // handleFirstStage();
+    handleSecondStage()
   } else if (stage <= 3) {
     handleSecondStage();
   } else if (stage === 4) {
@@ -164,10 +164,10 @@ function handleSecondStage() {
   walkEnemy.style.display = "flex";
   character.style.left = "50px";
   characterX = 50;
-
+  lastDirection = "right";
+  character.classList.remove("standingLeft");
   character.offsetHeight;
   battleIcon.style.backgroundImage = 'url("./icons/airIcon.png")';
-
   if (stage === 3) {
     killDetail.style.display = "flex";
     battleIcon.style.backgroundImage = 'url("./icons/battleIcon.png")';
