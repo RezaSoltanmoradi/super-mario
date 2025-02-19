@@ -18,6 +18,27 @@ const FILES_TO_CACHE = [
   "./styles/enemies.css",
   "./styles/mushroom.css",
   "./styles/smallDeviceBtn.css",
+  "./styles/smallDeviceBtn.css",
+  "./assets/img/Brick7.jpg",
+  "./assets/img/enemy1.gif",
+  "./assets/img/enemy2.gif",
+  "./assets/img/gamePlay.jpg",
+  "./assets/img/marioRunning.gif",
+  "./assets/img/Mushroom.png",
+  "./assets/img/stand3.png",
+  "./assets/img/superMario.webp",
+  "./assets/img/superMarioDeath.png",
+  "./assets/img/superMarioSuccess.webp.jpg",
+  './assets/fonts/Mikhak-Light.ttf',
+  './assets/icons/airIcon.png',
+  './assets/icons/battleIcon.png',
+  './assets/icons/coin.png',
+  './assets/icons/heart.png',
+  './assets/icons/info.png',
+  './assets/icons/walkIcon.png',
+  './assets/audio/death.mp3',
+  './assets/audio/jump.mp3',
+  './assets/audio/starting.mp3'
 ];
 
 self.addEventListener("install", (event) => {

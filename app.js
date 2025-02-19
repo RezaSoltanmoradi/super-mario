@@ -16,7 +16,6 @@ const jumpSound = new Audio("./assets/audio/jump.mp3");
 const deathSound = new Audio("./assets/audio/death.mp3");
 const startSound = new Audio("./assets/audio/starting.mp3");
 
-
 const obstacles = document.getElementById("obstacles");
 const obstacle = document.getElementById("obstacle");
 const mushroom = document.getElementById("mushroom");
@@ -94,10 +93,9 @@ character.classList.add("smCharacter");
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("./sw.js")
-    .then(() => console.log("Service Worker registered successfully!"))
-    .catch((err) => console.error("Service Worker registration failed:", err));
+    .then(() => {})
+    .catch((err) => console.error(err));
 }
-
 
 topBtn.addEventListener("touchstart", () => jump());
 sitDownBtn.addEventListener("touchstart", () => sitDown());
@@ -174,7 +172,8 @@ function checkAccident() {
       mushroomAccident.isDeath &&
       mushIsActive &&
       isSmallCharacter &&
-      !obstaclesAccident.headAccident
+      !obstaclesAccident.headAccident &&
+      !isJumping
     ) {
       character.classList.remove("smallJumpAnimate");
       character.classList.remove("smCharacter");
