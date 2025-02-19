@@ -28,7 +28,7 @@ const FILES_TO_CACHE = [
   "./assets/img/stand3.png",
   "./assets/img/superMario.webp",
   "./assets/img/superMarioDeath.png",
-  "./assets/img/superMarioSuccess.webp.jpg",
+  "./assets/img/superMarioSuccess.webp",
   "./assets/fonts/Mikhak-Light.ttf",
   "./assets/icons/airIcon.png",
   "./assets/icons/battleIcon.png",
@@ -45,7 +45,6 @@ const FILES_TO_CACHE = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("Adding files to cache");
       return Promise.all(
         FILES_TO_CACHE.map((file) =>
           cache
