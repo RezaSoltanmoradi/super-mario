@@ -278,7 +278,6 @@ span {
   .gameContainer {
     overflow-x: scroll !important; /* اطمینان از فعال بودن اسکرول */
   }
-
   .obstacles {
     width: 150px;
     height: 40px;

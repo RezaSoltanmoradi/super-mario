@@ -15,6 +15,8 @@ const sitDownBtn = document.getElementById("sitDown");
 const jumpSound = new Audio("./assets/audio/jump.mp3");
 const deathSound = new Audio("./assets/audio/death.mp3");
 const startSound = new Audio("./assets/audio/starting.mp3");
+
+
 const obstacles = document.getElementById("obstacles");
 const obstacle = document.getElementById("obstacle");
 const mushroom = document.getElementById("mushroom");
@@ -72,6 +74,7 @@ function resetGameData(startBtn) {
     startBtn.style.display = "none";
   }
   character.classList.remove("standingLeft");
+
   character.classList.remove("bigAnimate");
   character.classList.add("smallAnimate");
   character.classList.add("smCharacter");
@@ -86,6 +89,7 @@ function resetGameData(startBtn) {
 character.classList.remove("bigAnimate");
 character.classList.add("smallAnimate");
 character.classList.add("smCharacter");
+
 // ثبت سرویس وورکر
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
@@ -93,6 +97,7 @@ if ("serviceWorker" in navigator) {
     .then(() => console.log("Service Worker registered successfully!"))
     .catch((err) => console.error("Service Worker registration failed:", err));
 }
+
 
 topBtn.addEventListener("touchstart", () => jump());
 sitDownBtn.addEventListener("touchstart", () => sitDown());
