@@ -63,7 +63,6 @@ function showModal() {
       if (stage === 2 && iconSpan.classList.contains("span3")) {
         iconSpan.style.backgroundImage = 'url("./assets/icons/airIcon.png") no-repeat';
       }
-
       li.classList.add("challange");
       li.appendChild(iconSpan);
       li.appendChild(txtSpan);

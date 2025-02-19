@@ -32,6 +32,7 @@ const FILES_TO_CACHE = [
   "./assets/fonts/Mikhak-Light.ttf",
   "./assets/icons/airIcon.png",
   "./assets/icons/battleIcon.png",
+  "./assets/icons/gameIcon.png",
   "./assets/icons/coin.png",
   "./assets/icons/heart.png",
   "./assets/icons/info.png",
