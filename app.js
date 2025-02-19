@@ -84,6 +84,7 @@ function resetGameData(startBtn) {
     obsChildren[i].classList.remove("emptyObstacle");
   }
 }
+
 // **اضافه کردن کنترل‌های کیبورد**
 character.classList.remove("bigAnimate");
 character.classList.add("smallAnimate");
