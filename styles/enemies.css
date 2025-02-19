@@ -1,0 +1,40 @@
+#airEnemy {
+  width: 150px;
+  height: 130px;
+  left: 120%;
+  bottom: 150px;
+  position: absolute;
+  background: url("../assets/img/enemy2.gif") center no-repeat;
+  /* background-color: green; */
+  background-size: contain;
+  display: none;
+}
+#walkEnemy {
+  width: 100px;
+  height: 150px;
+  left: 120%;
+  bottom: 20px;
+  position: absolute;
+  background: url("../assets/img/enemy1.gif") center no-repeat;
+  background-size: cover;
+  display: none;
+}
+@keyframes pipeAnimation {
+  0% {
+    left: 120%;
+  }
+  100% {
+    left: -20%;
+  }
+}
+@media screen and (max-width: 760px) {
+  #walkEnemy {
+    width: 60px;
+    height: 80px;
+  }
+  #airEnemy {
+    width: 80px;
+    height: 70px;
+    bottom: 90px;
+  }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Mario</title>
+    <!-- style css links -->
+    <link rel="stylesheet" href="./styles/character.css" />
+    <link rel="stylesheet" href="./styles/characterEvent.css" />
+    <link rel="stylesheet" href="./styles/enemies.css" />
+    <link rel="stylesheet" href="./Modal.css" />
+    <link rel="stylesheet" href="./styles/smallDeviceBtn.css" />
+    <link rel="stylesheet" href="./styles/mushroom.css" />
+    <link rel="stylesheet" href="index.css" />
+    <!-- fav icon links -->
+    <link
+      type="image/png"
+      sizes="32x32"
+      rel="icon"
+      href="./assets/icons/mushroomFav.png"
+    />
+  </head>
+  <body>
+    <!-- overlay for gameOver Modal -->
+    <div class="overLay" id="overLay"></div>
+    <!-- game area section -->
+    <section class="gameContainer">
+      <div class="game">
+        <!-- obstacles or wall for character jumping -->
+        <div class="obstacles" id="obstacles">
+          <div class="obstacle" id="obstacle1">
+            ?
+            <span class="coin" id="coin1">
+              <i class="fa-brands fa-bitcoin"></i>
+            </span>
+          </div>
+          <div class="obstacle" id="obstacle2">
+            !
+            <span class="coin" id="coin2">
+              <i class="fa-brands fa-bitcoin"></i>
+            </span>
+          </div>
+          <div class="obstacle" id="obstacle3">
+            ?
+            <span class="coin" id="coin3">
+              <i class="fa-brands fa-bitcoin"></i>
+            </span>
+          </div>
+        </div>
+        <!-- objects or all characters section  -->
+        <section>
+          <div class="mushroom" id="mushroom"></div>
+          <div id="character"></div>
+          <div id="walkEnemy"></div>
+          <div id="airEnemy"></div>
+        </section>
+      </div>
+      <!-- total scors section -->
+      <section class="totalScors">
+        <div class="stageResult">
+          <!-- stage score -->
+          <span class="stageIcon"> </span>
+          <span id="StageSpan">مرحله اول</span>
+        </div>
+        <!-- heart score -->
+        <div class="heartResult">
+          <span class="heartIcon"> </span>
+          <span id="heartSpan">1</span>
+        </div>
+        <!-- kill score -->
+        <div class="killResult">
+          <span class="battleIcon" id="battleIcon"> </span>
+          <span id="killSpan">0 </span>
+          <div class="killDetail" id="killDetail">
+            <span>=</span>
+            <span class="walkIcon"> </span>
+            <span id="walkKillSpan" class="walkKillSpan">0 </span>
+            <span>+</span>
+            <span class="airIcon"> </span>
+            <span id="birdKillSpan" class="birdKillSpan">0 </span>
+          </div>
+        </div>
+        <!-- coin score -->
+        <div class="coinResult">
+          <span id="coinIcon" class="coinIcon"> </span>
+          <span id="coinSpan" class="coinSpan"></span>
+        </div>
+      </section>
+
+      <!-- game control buttons with small device -->
+      <section class="buttons">
+        <button id="goTop" class="topBtn"></button>
+        <button id="goLeft" class="leftBtn"></button>
+        <button id="goRight" class="rightBtn"></button>
+        <button id="sitDown" class="downBtn"></button>
+      </section>
+    </section>
+    <!-- javascript links -->
+    <script src="Modal.js" defer></script>
+    <script src="GameOver.js" defer></script>
+    <script src="ResetEnemies.js" defer></script>
+    <script src="ResetEnemy.js" defer></script>
+    <script src="Jump.js" defer></script>
+    <script src="SitDown.js" defer></script>
+    <script src="Moving.js" defer></script>
+    <script src="StandUp.js" defer></script>
+    <script src="ValidAccident.js" defer></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

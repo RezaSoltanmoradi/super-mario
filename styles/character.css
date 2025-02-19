@@ -1,0 +1,26 @@
+#character,
+.smCharacter {
+  left: 50px;
+  bottom: 30px;
+  background-size: cover;
+  position: absolute;
+  display: none;
+}
+#character {
+  width: 100px;
+  height: 150px;
+}
+.smCharacter {
+  width: 80px !important;
+  height: 120px !important;
+}
+@media screen and (max-width: 760px) {
+  #character {
+    height: 80px;
+    width: 60px;
+  }
+  .smCharacter {
+    height: 60px !important;
+    width: 40px !important;
+  }
+}

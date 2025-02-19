@@ -1,0 +1,138 @@
+.mushroom {
+  position: absolute;
+  background: url("../assets/img/Mushroom.png") center no-repeat;
+  background-size: cover;
+  width: 71px;
+  height: 68px;
+  bottom: 300px;
+  left: 225px;
+  z-index: 200;
+  opacity: 0;
+  transition: all 1s ease-out;
+  display: none;
+}
+.mushroomAnimate1 {
+  display: flex !important;
+  animation: mushAnime1 15s ease-in-out forwards;
+}
+.mushroomAnimate2 {
+  display: flex !important;
+  animation: mushAnime2 15s ease-in-out forwards;
+}
+
+@keyframes mushAnime1 {
+  0% {
+    opacity: 0;
+    left: 225px;
+    bottom: 300px;
+  }
+  25% {
+    opacity: 1;
+    left: 225px;
+    bottom: 370px;
+  }
+  50% {
+    opacity: 1;
+    left: 50px;
+    bottom: 370px;
+  }
+  75% {
+    opacity: 1;
+    bottom: 30px;
+    left: 50px;
+  }
+  100% {
+    opacity: 1;
+    left: -20%;
+    bottom: 30px;
+  }
+}
+@keyframes mushAnime2 {
+  0% {
+    opacity: 0;
+    left: 225px;
+    bottom: 300px;
+  }
+  25% {
+    opacity: 1;
+    left: 225px;
+    bottom: 370px;
+  }
+  50% {
+    opacity: 1;
+    left: 397px;
+    bottom: 370px;
+  }
+  75% {
+    opacity: 1;
+    bottom: 30px;
+    left: 397px;
+  }
+  100% {
+    opacity: 1;
+    left: 120%;
+    bottom: 30px;
+  }
+}
+@media screen and (max-width: 760px) {
+  .mushroom {
+    width: 40px;
+    height: 40px;
+    bottom: 170px;
+    left: 114px;
+  }
+  @keyframes mushAnime1 {
+    0% {
+      opacity: 0;
+      left: 114px;
+      bottom: 170px;
+    }
+    25% {
+      opacity: 1;
+      left: 114px;
+      bottom: 208px;
+    }
+    50% {
+      opacity: 1;
+      left: 22px;
+      bottom: 208px;
+    }
+    75% {
+      opacity: 1;
+      bottom: 30px;
+      left: 22px;
+    }
+    100% {
+      opacity: 1;
+      left: -20%;
+      bottom: 30px;
+    }
+  }
+  @keyframes mushAnime2 {
+    0% {
+      opacity: 0;
+      left: 114px;
+      bottom: 170px;
+    }
+    25% {
+      opacity: 1;
+      left: 114px;
+      bottom: 208px;
+    }
+    50% {
+      opacity: 1;
+      left: 208px;
+      bottom: 208px;
+    }
+    75% {
+      opacity: 1;
+      left: 208px;
+      bottom: 30px;
+    }
+    100% {
+      opacity: 1;
+      left: 120%;
+      bottom: 30px;
+    }
+  }
+}

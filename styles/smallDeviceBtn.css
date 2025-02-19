@@ -1,0 +1,65 @@
+.buttons {
+  display: none;
+}
+@media screen and (max-width: 760px) {
+  .buttons {
+    position: fixed;
+    padding-top: 20px;
+    display: grid;
+    grid-template: ".. .. .. .. .." 1fr ".. .. top .. .." 2fr ".. left .. right .." 2fr ".. .. down .. .." 2fr ".. .. .. .. .." 1fr / 1fr 2fr 2fr 2fr 1fr;
+    gap: 5px;
+    height: 40%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(180deg, #000000, #990000);
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: rgb(2, 0, 36);
+    }
+    .topBtn {
+      grid-area: top;
+
+      background: linear-gradient(
+        180deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+      );
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .rightBtn {
+      grid-area: right;
+      background: linear-gradient(
+        270deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+      );
+      clip-path: polygon(100% 50%, 0 0, 0 100%);
+    }
+    .leftBtn {
+      grid-area: left;
+      background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+      );
+      clip-path: polygon(100% 100%, 100% 0, 0 50%);
+    }
+    .downBtn {
+      grid-area: down;
+      background: linear-gradient(
+        0deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+      );
+      clip-path: polygon(50% 100%, 100% 0, 0 0);
+    }
+  }
+}
