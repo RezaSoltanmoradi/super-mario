@@ -4,7 +4,12 @@
   position: relative;
   overflow-x: scroll; /* اطمینان از فعال بودن اسکرول */
   scroll-behavior: smooth;
-  background-color: black;
+  background: linear-gradient(
+    180deg,
+    #eeb964 0%,
+    /* رنگ پایه در پایین */ #d7a14d 35%,
+    /* رنگ کمی تیره‌تر در وسط */ #a67d3b 100% /* رنگ تیره‌تر در بالا */
+  );
   white-space: nowrap;
 }
 
@@ -24,10 +29,6 @@
   width: 0;
   height: 0;
   display: none;
-}
-.gameContainer::-webkit-scrollbar-thumb {
-  background-color: #888; /* رنگ اسکرول */
-  border-radius: 4px;
 }
 @font-face {
   font-family: mikhak;
@@ -89,18 +90,15 @@ p {
   margin: 2px;
   height: 100%;
   width: 93px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   z-index: 230;
   transition: all 0.2s linear;
-  font-size: 30px;
   font-weight: bold;
   color: yellow;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 30px;
   z-index: 220;
   border-radius: 5px;
 }
@@ -150,6 +148,7 @@ p {
   height: 150px;
   justify-content: space-around;
   align-items: flex-start;
+  font-weight: bold;
 }
 .coinResult,
 .killResult,
@@ -193,6 +192,7 @@ span {
 .battleIcon {
   background: url("./assets/icons/battleIcon.png");
   background-size: contain;
+  animation: enemyIconAnim infinite 1s ease;
 }
 .walkIcon {
   background: url("./assets/icons/walkIcon.png");
@@ -207,16 +207,18 @@ span {
   background-size: contain;
   animation: rotateAnim infinite 3s ease;
 }
-.coinResult {
-  color: orange;
-}
-.heartResult {
-  color: rgb(255, 0, 0);
-}
-.stageResult {
-  color: blue;
-}
 
+@keyframes enemyIconAnim {
+  0% {
+    transform: translateY(0, 0);
+  }
+  50% {
+    transform: translate(0, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
 @keyframes rotateAnim {
   0% {
     transform: rotateY(0deg);
@@ -286,6 +288,7 @@ span {
   }
   .obstacle {
     width: 50px;
+    font-size: 25px;
   }
   @keyframes obstaclesAnim {
     from {
@@ -324,10 +327,10 @@ span {
       font-size: 15px;
     }
     .walkIcon,
-    .battleIcon,
-    .airIcon {
-      width: 15px;
-      height: 15px;
+    .airIcon,
+    .battleIcon {
+      width: 17px;
+      height: 17px;
       background-position: center;
     }
   }

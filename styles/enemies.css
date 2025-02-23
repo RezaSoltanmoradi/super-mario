@@ -5,7 +5,6 @@
   bottom: 150px;
   position: absolute;
   background: url("../assets/img/enemy2.gif") center no-repeat;
-  /* background-color: green; */
   background-size: contain;
   display: none;
 }

@@ -61,7 +61,7 @@ function showModal() {
       txtSpan.classList.add("text");
       iconSpan.classList.add(`span${challIndex}`);
       if (stage === 2 && iconSpan.classList.contains("span3")) {
-        iconSpan.style.backgroundImage = 'url("./assets/icons/airIcon.png") no-repeat';
+        iconSpan.style.backgroundImage = 'url("./assets/icons/airIcon.png")';
       }
       li.classList.add("challange");
       li.appendChild(iconSpan);
@@ -147,7 +147,6 @@ function handleFirstStage() {
   obstacles.style.display = "none";
   mushroom.style.display = "none";
   killDetail.style.display = "none";
-  battleIcon.style.backgroundImage = 'url("./assets/icons/walkIcon.png")';
 
   StageSpan.textContent = `مرحله ${convertToTxt[stage]}`;
   resetSingleEnemy({ enemy: walkEnemy, isAlive: true, firstComing });

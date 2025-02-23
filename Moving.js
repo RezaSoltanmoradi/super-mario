@@ -1,5 +1,4 @@
 let characterMovePercentage;
-let imageWidth;
 
 function moving() {
   if (gameIsOver && modalIsOpen) {
@@ -12,65 +11,67 @@ function moving() {
     clearInterval(movment);
     return;
   }
-  const characterRect = character.getBoundingClientRect();
-  imageWidth = gameImage.getBoundingClientRect().width;
-  const maxCharacterX = imageWidth - characterRect.width; // حد نهایی حرکت کاراکتر
 
-  if (isRightMoving && characterX + characterRect.width < imageWidth) {
-    lastDirection = "right"; // ذخیره آخرین جهت
-    character.classList.remove("standingRight");
-    character.classList.remove("standingLeft");
-    character.classList.remove("runningLeft");
-    character.classList.add("runningRight");
+  // همگام‌سازی موقعیت واقعی با مقدار ذخیره‌شده
+  const currentRealX =
+    character.getBoundingClientRect().left -
+    gameImage.getBoundingClientRect().left;
 
-    characterX = Math.min(characterX + characterSpeed, maxCharacterX);
-  } else if (isLeftMoving && characterX > 0) {
-    lastDirection = "left"; // ذخیره آخرین جهت
-    character.classList.remove("standingRight");
-    character.classList.remove("standingLeft");
-    character.classList.remove("runningRight");
-    character.classList.add("runningLeft");
-    characterX = Math.max(characterX - characterSpeed, 0);
-  } else if (
-    characterX + characterRect.width === imageWidth ||
-    characterX === 0
-  ) {
-    isRightMoving = false;
-    isLeftMoving = false;
+  // فقط وقتی که فاصله زیاد است مقدار ذخیره‌شده به‌روزرسانی می‌شود
+  if (Math.abs(currentRealX - characterX) > 0.5) {
+    characterX = currentRealX;
   }
 
-  // **بررسی ایستادن**
-  if (!isRightMoving && !isLeftMoving) {
-    character.classList.remove("runningLeft", "runningRight");
-    if (lastDirection === "right") {
-      character.classList.add("standingRight");
-    } else {
-      character.classList.add("standingLeft");
+  const imageWidth = gameImage.offsetWidth;
+  const characterWidth = character.offsetWidth;
+  const containerWidth = gameContainer.clientWidth;
+  const maxCharacterX = imageWidth - characterWidth;
+
+  // منطق حرکت
+  if (isRightMoving) {
+    if (characterX < maxCharacterX) {
+      characterX = Math.min(characterX + characterSpeed, maxCharacterX);
     }
+    lastDirection = "right";
+  } else if (isLeftMoving) {
+    if (characterX > 0) {
+      characterX = Math.max(characterX - characterSpeed, 0);
+    }
+    lastDirection = "left";
   }
+
+  // اعمال موقعیت با transform
   character.style.left = characterX + "px";
-  // اسکرول آرام
+
+  // مدیریت کلاس‌های انیمیشن
+  character.classList.toggle("runningRight", isRightMoving);
+  character.classList.toggle("runningLeft", isLeftMoving);
+  character.classList.toggle(
+    "standingRight",
+    !isRightMoving && lastDirection === "right"
+  );
+  character.classList.toggle(
+    "standingLeft",
+    !isLeftMoving && lastDirection === "left"
+  );
+
   smoothScroll();
 }
-// فراخوانی حرکت به‌طور منظم، به جای استفاده از setInterval برای دقت بیشتر
 requestAnimationFrame(moving);
 
 function smoothScroll() {
-  const maxScroll = imageWidth - deviceWidth;
-  // const characterRect = character.getBoundingClientRect();
-  // const scrollTriggerPoint = deviceWidth / 2;
-  // const characterCenter = characterRect.left + characterRect.width / 2;
+  const imageWidth = gameImage.offsetWidth;
+  const containerWidth = gameContainer.clientWidth;
+  const maxScroll = imageWidth - containerWidth;
 
-  // if (characterCenter >= scrollTriggerPoint) {
-  // }
+  // محاسبه موقعیت هدف بر اساس مرکز کاراکتر
+  const targetScroll =
+    (characterX + character.offsetWidth / 2 - containerWidth / 2) *
+    (maxScroll / (imageWidth - containerWidth));
 
-  characterMovePercentage = Math.min(
-    Math.max((characterX - deviceWidth / 2) / maxScroll, 0),
-    1
-  );
-  scrollPosition = Math.min(maxScroll, maxScroll * characterMovePercentage);
+  // محدود کردن مقادیر
+  const clampedScroll = Math.min(Math.max(targetScroll, 0), maxScroll);
 
-  scrollPosition = Math.min(scrollPosition, maxScroll);
-
-  gameContainer.scrollLeft = scrollPosition;
+  // اعمال اسکرول با اثر نرم
+  gameContainer.scrollLeft = clampedScroll;
 }

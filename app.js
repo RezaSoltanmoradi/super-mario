@@ -23,6 +23,9 @@ const killDetail = document.getElementById("killDetail");
 const birdKillSpan = document.getElementById("birdKillSpan");
 const walkKillSpan = document.getElementById("walkKillSpan");
 let deviceWidth = window.innerWidth; // عرض دستگاه
+let imageWidth = gameImage.getBoundingClientRect().width;
+let characterRect;
+
 let isSmallCharacter = true;
 let modalIsOpen = false;
 let movment = null;
