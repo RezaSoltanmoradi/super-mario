@@ -39,8 +39,13 @@ const FILES_TO_CACHE = [
   "./assets/icons/walkIcon.png",
   "./assets/icons/mushroomFav.png",
   "./assets/audio/death.mp3",
-  "./assets/audio/jump.mp3",
+  "./assets/audio/jump.wav",
   "./assets/audio/starting.mp3",
+  "./assets/audio/startin2.wav",
+  "./assets/audio/airSound.wav",
+  "./assets/audio/walkSound.wav",
+  "./assets/audio/coin.wav",
+  "./assets/audio/growSound.wav",
 ];
 
 self.addEventListener("install", (event) => {

@@ -116,7 +116,6 @@ const closeModal = ({ startBtn, modalContainer }) => {
   character.offsetHeight;
   overLay.style.display = "none";
   deathSound.pause();
-  startSound.play();
 
   if (movment) clearInterval(movment); // جلوگیری از اجرای چندین تایمر
   movment = setInterval(moving, 30);
@@ -138,6 +137,8 @@ const closeModal = ({ startBtn, modalContainer }) => {
 function handleFirstStage() {
   if (modalIsOpen) return; // جلوگیری از اجرای تابع در صورت باز بودن مودال
   let firstComing = true;
+  startSound.play();
+
   walkEnemy.style.display = "flex";
   airEnemy.style.display = "none";
   obstacles.style.display = "none";
@@ -148,6 +149,7 @@ function handleFirstStage() {
 }
 function handleSecondStage() {
   if (modalIsOpen) return; // جلوگیری از اجرای تابع در صورت باز بودن مودال
+  startSound2.play();
   airEnemy.style.display = "flex";
   obstacles.style.display = "flex";
   mushroom.style.display = "flex";

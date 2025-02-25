@@ -12,10 +12,14 @@ const topBtn = document.getElementById("goTop");
 const rightBtn = document.getElementById("goRight");
 const leftBtn = document.getElementById("goLeft");
 const sitDownBtn = document.getElementById("sitDown");
-const jumpSound = new Audio("./assets/audio/jump.mp3");
+const jumpSound = new Audio("./assets/audio/jump.wav");
 const deathSound = new Audio("./assets/audio/death.mp3");
 const startSound = new Audio("./assets/audio/starting.mp3");
-
+const startSound2 = new Audio("./assets/audio/startin2.wav");
+const airSound = new Audio("./assets/audio/airSound.wav");
+const walkSound = new Audio("./assets/audio/walkSound.wav");
+const coinSound = new Audio("./assets/audio/coin.wav");
+const growSound = new Audio("./assets/audio/growSound.wav");
 const obstacles = document.getElementById("obstacles");
 const obstacle = document.getElementById("obstacle");
 const mushroom = document.getElementById("mushroom");
@@ -187,6 +191,7 @@ function checkAccident() {
       character.style.bottom = characterRect.bottom;
       character.classList.remove("smallAnimate");
       character.classList.add("bigAnimate");
+      growSound.play();
       mushAnimation = null;
     } else if (
       !mushroomAccident.isDeath &&
@@ -219,6 +224,7 @@ function checkAccident() {
             coinCounts[foundCoinIndex].collected = true; // علامت‌گذاری به عنوان جمع‌آوری‌شده
             if (coinCounts[foundCoinIndex].coin < 5) {
               coinCounts[foundCoinIndex].coin += 1;
+              coinSound.play();
             } else if (coinCounts[foundCoinIndex].coin >= 5) {
               if (obstacle.classList.contains("obstacleAnim")) {
                 obstacle.classList.remove("obstacleAnim");
@@ -282,9 +288,13 @@ function checkAccident() {
       } else if (topDepth === maxDepth) {
         if (modalIsOpen) return;
         killCoins += 100;
-        if (enemy === walkEnemy && stage !== 2) {
-          deathCounter.walkDeath++;
+        if (enemy === walkEnemy) {
+          walkSound.play();
+          if (stage !== 2) {
+            deathCounter.walkDeath++;
+          }
         } else if (enemy === airEnemy) {
+          airSound.play();
           deathCounter.airDeath++;
         }
         stageHandler();
@@ -301,6 +311,7 @@ function checkAccident() {
           isSmallCharacter = true;
           character.classList.remove("bigAnimate");
           character.classList.add("smallAnimate");
+          growSound.play();
           setTimeout(() => {
             character.classList.add("smCharacter");
           }, 200);

@@ -59,7 +59,7 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
-  width: 200px;
+  width: 250px;
   height: 50px;
   font-size: 17px;
   background-color: #007bff;
@@ -91,7 +91,7 @@
   float: right;
   width: 90%;
 }
-.text{
+.text {
   font-size: 17px;
 }
 .span1,
