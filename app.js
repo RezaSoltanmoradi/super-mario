@@ -20,6 +20,8 @@ const airSound = new Audio("./assets/audio/airSound.wav");
 const walkSound = new Audio("./assets/audio/walkSound.wav");
 const coinSound = new Audio("./assets/audio/coin.wav");
 const growSound = new Audio("./assets/audio/growSound.wav");
+const shrinkSound = new Audio("./assets/audio/shrinkSound.wav");
+const emptySound = new Audio("./assets/audio/emptySound.wav");
 const obstacles = document.getElementById("obstacles");
 const obstacle = document.getElementById("obstacle");
 const mushroom = document.getElementById("mushroom");
@@ -160,6 +162,62 @@ function checkAccident() {
     const airAccident = validAccident(airEnemyRect, airEnemy);
     const obstaclesAccident = validAccident(obstaclesRect, obstacles);
     const mushroomAccident = validAccident(mushroomRect, mushroom);
+
+    if (obstaclesAccident.headAccident) {
+      const children = obstacles.children;
+      let obstacleRect, obstacle, exactCoin;
+      for (let i = 0; i < children.length; i++) {
+        obstacle = children[i];
+        obstacleRect = obstacle.getBoundingClientRect();
+        const obsId = obstacle.id;
+
+        // بررسی اینکه آیا این مانع قبلاً کوین داده است
+        let existingObstacle = coinCounts.find((coin) => coin.id === obsId);
+        if (!existingObstacle && (obsId !== "obstacle2" || mushIsActive)) {
+          coinCounts.push({ id: obsId, coin: 0 });
+        } else if (validAccident(obstacleRect).headAccident) {
+          const foundCoinIndex = coinCounts.findIndex(
+            (coin) => coin.id === obsId
+          );
+          exactCoin = obstacle.children[0];
+
+          if (foundCoinIndex !== -1 && !coinCounts[foundCoinIndex].collected) {
+            exactCoin.classList.add("coinJump");
+            coinCounts[foundCoinIndex].collected = true; // علامت‌گذاری به عنوان جمع‌آوری‌شده
+            if (coinCounts[foundCoinIndex].coin < 5) {
+              coinCounts[foundCoinIndex].coin += 1;
+              coinSound.play();
+            } else if (coinCounts[foundCoinIndex].coin >= 5) {
+              if (obstacle.classList.contains("obstacleAnim")) {
+                obstacle.classList.remove("obstacleAnim");
+                void obstacle.offsetWidth; // ترفند ریست CSS
+              }
+              exactCoin.classList.remove("coinJump");
+              if (
+                (mushIsActive && obsId === "obstacle2") ||
+                obsId !== "obstacle2" ||
+                !isSmallCharacter
+              ) {
+                emptySound.play();
+                obstacle.classList.add("obstacleAnim");
+                obstacle.classList.add("emptyObstacle");
+              }
+            }
+            setTimeout(() => {
+              obstacle.classList.remove("obstacleAnim");
+              exactCoin.classList.remove("coinJump");
+              coinCounts[foundCoinIndex].collected = false;
+            }, 1000);
+            setTimeout(() => {
+              coinSound.paused();
+              emptySound.paused();
+            }, 200);
+          }
+        }
+      }
+      character.classList.remove("jumpAnimate");
+      character.style.bottom = `30px`;
+    }
     if (
       mushroomAccident.headAccident &&
       !mushIsActive &&
@@ -200,50 +258,6 @@ function checkAccident() {
       (mushroomRect.right < 0 || mushroomRect.left > gameImage.clientWidth)
     ) {
       resetMushroom();
-    }
-    if (obstaclesAccident.headAccident) {
-      const children = obstacles.children;
-      let obstacleRect, obstacle, exactCoin;
-      for (let i = 0; i < children.length; i++) {
-        obstacle = children[i];
-        obstacleRect = obstacle.getBoundingClientRect();
-        const obsId = obstacle.id;
-
-        // بررسی اینکه آیا این مانع قبلاً کوین داده است
-        let existingObstacle = coinCounts.find((coin) => coin.id === obsId);
-        if (!existingObstacle && (obsId !== "obstacle2" || mushIsActive)) {
-          coinCounts.push({ id: obsId, coin: 0 });
-        } else if (validAccident(obstacleRect).headAccident) {
-          const foundCoinIndex = coinCounts.findIndex(
-            (coin) => coin.id === obsId
-          );
-          exactCoin = obstacle.children[0];
-
-          if (foundCoinIndex !== -1 && !coinCounts[foundCoinIndex].collected) {
-            exactCoin.classList.add("coinJump");
-            coinCounts[foundCoinIndex].collected = true; // علامت‌گذاری به عنوان جمع‌آوری‌شده
-            if (coinCounts[foundCoinIndex].coin < 5) {
-              coinCounts[foundCoinIndex].coin += 1;
-              coinSound.play();
-            } else if (coinCounts[foundCoinIndex].coin >= 5) {
-              if (obstacle.classList.contains("obstacleAnim")) {
-                obstacle.classList.remove("obstacleAnim");
-                void obstacle.offsetWidth; // ترفند ریست CSS
-              }
-              exactCoin.classList.remove("coinJump");
-              obstacle.classList.add("obstacleAnim");
-              obstacle.classList.add("emptyObstacle");
-            }
-            setTimeout(() => {
-              obstacle.classList.remove("obstacleAnim");
-              exactCoin.classList.remove("coinJump");
-              coinCounts[foundCoinIndex].collected = false;
-            }, 1000);
-          }
-        }
-      }
-      character.classList.remove("jumpAnimate");
-      character.style.bottom = `30px`;
     }
     if (obstaclesAccident.jumpOnWall && !isOnWall) {
       character.classList.remove("jumpAnimate");
@@ -311,7 +325,7 @@ function checkAccident() {
           isSmallCharacter = true;
           character.classList.remove("bigAnimate");
           character.classList.add("smallAnimate");
-          growSound.play();
+          shrinkSound.play();
           setTimeout(() => {
             character.classList.add("smCharacter");
           }, 200);
@@ -346,7 +360,7 @@ function checkAccident() {
     resultHandler();
     function stageHandler() {
       const stages = {
-        one: deathCounter.walkDeath >= 3 && stage === 1,
+        one: deathCounter.walkDeath >= 1 && stage === 1,
         two: deathCounter.airDeath >= 3 && stage === 2,
         three:
           deathCounter.airDeath >= 3 &&
