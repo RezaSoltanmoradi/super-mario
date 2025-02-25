@@ -50,7 +50,6 @@ let killCoins = 0;
 let totalCoins = 0;
 
 function resetGameData(startBtn) {
-  console.log("resetGameData...");
   isSmallCharacter = true;
   modalIsOpen = false;
   lastDirection = "right"; // جهت پیش‌فرض ایستادن

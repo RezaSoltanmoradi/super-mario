@@ -123,14 +123,11 @@ const closeModal = ({ startBtn, modalContainer }) => {
 
   if (stage === 1 && heart > 0) {
     handleFirstStage();
-    console.log("first line");
   } else if (stage <= 3 && heart > 0) {
     handleSecondStage();
-    console.log("second line");
   } else if (stage === 4 || heart === 0) {
     resetGameData(startBtn);
     handleFirstStage();
-    console.log("last line");
     stage = 1;
     mushroom.style.display = "none";
   }
