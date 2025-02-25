@@ -208,10 +208,6 @@ function checkAccident() {
               exactCoin.classList.remove("coinJump");
               coinCounts[foundCoinIndex].collected = false;
             }, 1000);
-            setTimeout(() => {
-              coinSound.paused();
-              emptySound.paused();
-            }, 200);
           }
         }
       }
