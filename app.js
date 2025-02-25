@@ -50,10 +50,13 @@ let killCoins = 0;
 let totalCoins = 0;
 
 function resetGameData(startBtn) {
+  console.log("resetGameData...");
   isSmallCharacter = true;
   modalIsOpen = false;
   lastDirection = "right"; // جهت پیش‌فرض ایستادن
+  characterX = 50;
   character.style.bottom = "30px";
+  character.style.left = "50px";
   heart = 2;
   stage = 1;
   isLeftMoving = false;
@@ -66,7 +69,6 @@ function resetGameData(startBtn) {
   mushIsActive = false;
   mushroom.classList.remove(mushAnimation);
   mushAnimation = null;
-  characterX = 50;
   characterSpeed = deviceWidth <= 760 ? 2 : 5;
   scrollPosition = 0;
   totalCoins = 0;
@@ -76,7 +78,6 @@ function resetGameData(startBtn) {
     startBtn.style.display = "none";
   }
   character.classList.remove("standingLeft");
-
   character.classList.remove("bigAnimate");
   character.classList.add("smallAnimate");
   character.classList.add("smCharacter");

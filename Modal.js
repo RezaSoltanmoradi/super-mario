@@ -110,28 +110,25 @@ const closeModal = ({ startBtn, modalContainer }) => {
   deathCounter = { walkDeath: 0, airDeath: 0 };
   modalIsOpen = false;
   gameIsOver = false;
-  modalContainer.classList.remove("openModal");
-  modalContainer.classList.add("closeModal");
+  modalContainer.classList.toggle("openModal");
+  modalContainer.classList.toggle("closeModal");
   character.style.display = "flex";
   character.offsetHeight;
-  setTimeout(() => {
-    modalContainer.remove();
-    overLay.style.display = "none";
-  }, 500);
-  if (heart <= 0) {
-    stage = 1;
-    resetGameData(startBtn);
-  }
+  overLay.style.display = "none";
+
   if (movment) clearInterval(movment); // جلوگیری از اجرای چندین تایمر
   movment = setInterval(moving, 30);
 
-  if (stage === 1 || heart === 0) {
+  if (stage === 1 && heart > 0) {
     handleFirstStage();
-  } else if (stage <= 3) {
+    console.log('first line')
+  } else if (stage <= 3 && heart > 0) {
     handleSecondStage();
-  } else if (stage === 4) {
+    console.log('second line')
+  } else if (stage === 4 || heart === 0) {
     resetGameData(startBtn);
     handleFirstStage();
+    console.log('last line')
     stage = 1;
     mushroom.style.display = "none";
   }
@@ -147,7 +144,6 @@ function handleFirstStage() {
   obstacles.style.display = "none";
   mushroom.style.display = "none";
   killDetail.style.display = "none";
-
   StageSpan.textContent = `مرحله ${convertToTxt[stage]}`;
   resetSingleEnemy({ enemy: walkEnemy, isAlive: true, firstComing });
 }
@@ -160,7 +156,7 @@ function handleSecondStage() {
   character.style.left = "50px";
   characterX = 50;
   lastDirection = "right";
-  character.classList.remove("standingLeft");
+  character.classList.toggle("standingLeft");
   character.offsetHeight;
   battleIcon.style.backgroundImage = 'url("./assets/icons/airIcon.png")';
   if (stage === 3) {
@@ -169,11 +165,4 @@ function handleSecondStage() {
   }
   StageSpan.textContent = `مرحله ${convertToTxt[stage]}`;
   resetEnemies();
-}
-function handleLastStage() {
-  let firstComing = true;
-  airEnemy.style.display = "none";
-  obstacles.style.display = "none";
-  mushroom.style.display = "none";
-  resetSingleEnemy({ enemy: walkEnemy, isAlive: true, firstComing });
 }
