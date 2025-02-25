@@ -115,20 +115,22 @@ const closeModal = ({ startBtn, modalContainer }) => {
   character.style.display = "flex";
   character.offsetHeight;
   overLay.style.display = "none";
+  deathSound.pause();
+  startSound.play();
 
   if (movment) clearInterval(movment); // جلوگیری از اجرای چندین تایمر
   movment = setInterval(moving, 30);
 
   if (stage === 1 && heart > 0) {
     handleFirstStage();
-    console.log('first line')
+    console.log("first line");
   } else if (stage <= 3 && heart > 0) {
     handleSecondStage();
-    console.log('second line')
+    console.log("second line");
   } else if (stage === 4 || heart === 0) {
     resetGameData(startBtn);
     handleFirstStage();
-    console.log('last line')
+    console.log("last line");
     stage = 1;
     mushroom.style.display = "none";
   }

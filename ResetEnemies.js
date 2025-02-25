@@ -7,11 +7,6 @@ function resetEnemies() {
   airEnemy.style.left = "120%"; // بازگرداندن دشمن به موقعیت اولیه
   walkEnemy.offsetHeight; // ترفند برای بازنشانی تغییرات CSS
   airEnemy.offsetHeight; // ترفند برای بازنشانی تغییرات CSS
-
-  setTimeout(() => {
-    deathSound.pause();
-    startSound.play();
-  }, 3000);
   walkEnemy.style.animation = `pipeAnimation ${enemySpeed}s infinite linear`;
   airEnemy.style.animation = `pipeAnimation ${enemySpeed}s infinite linear`;
   walkEnemy.style.animationDelay = `10s`;
